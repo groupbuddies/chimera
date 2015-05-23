@@ -22,7 +22,7 @@
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
 
       this.load.image('earth'    , 'assets/earth.png');
-      this.load.image('mocha'    , 'assets/mocha.png');
+      this.load.image('mocha'    , 'assets/mocha.png', 500, 500);
       this.load.image('coffee'   , 'assets/coffee.png');
       this.load.image('cannon'   , 'assets/cannon.png');
       this.load.image('pinpoint' , 'assets/location.png');

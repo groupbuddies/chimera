@@ -25,11 +25,11 @@
 
       this.mocha = this.add.sprite(0, this.game.height * 0.5, 'mocha');
       this.mocha.anchor.setTo(0.5, 0.5);
-      this.mocha.scale.set(0.2, 0.2);
+      // this.mocha.scale.set(1.8, 1.8);
       this.mocha.angle = 90;
 
       this.cannon = this.add.sprite(0, 0, 'cannon');
-      this.cannon.position.x = this.mocha.height * 0.45;
+      this.cannon.position.x = this.mocha.height * 0.47;
       this.cannon.position.y = this.game.height * 0.5;
       this.cannon.scale.set(0.25, 0.25);
       this.cannon.anchor.set(0.5, 1.2);

@@ -14,4 +14,7 @@ html, body {
   width: 640px;
   height: 480px;
   margin: 20px auto;
+  image-rendering: optimizeQuality;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
 }
