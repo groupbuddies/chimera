@@ -21,11 +21,19 @@
       this.load.image('player', 'assets/player.png');
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
 
-      this.load.image('circle', 'assets/circle.png');
-      this.load.image('java', 'assets/java.png');
-      this.load.image('canon', 'assets/canon.png');
+      this.load.image('circle' , 'assets/circle.png');
+      this.load.image('java'   , 'assets/java.png');
+      this.load.image('canon'  , 'assets/canon.png');
       this.load.image('house'  , 'assets/target_house.png');
       this.load.image('pum'    , 'assets/pum.png');
+
+      this.loadSounds(['fire','hit','miss']);
+    },
+
+    loadSounds: function(sounds){
+        sounds.forEach(function(s){
+            this.load.audio(s, 'assets/audio/'+s+'.mp3');
+        }, this);
     },
 
     create: function () {

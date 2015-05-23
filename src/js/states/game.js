@@ -69,6 +69,15 @@
 
       this.line = this.add.sprite(0, 0, this.lineProperties);
       this.trajectoryLine();
+
+      this.sounds = {
+        soundtrack: null,
+        actions: {
+            fire: this.game.add.audio('fire'),
+            hit:  this.game.add.audio('hit'),
+            miss: this.game.add.audio('miss')
+        }
+      };
     },
 
     update: function () {
@@ -98,6 +107,12 @@
       }, 2000,Phaser.Linear , true).interpolation(function(v, k){
         return Phaser.Math.bezierInterpolation(v, k);
       });
+
+      this.playFx(this.sounds.actions.fire);
+    },
+
+    playFx: function(sound){
+        sound.play();
     },
 
     trajectoryLine: function() {
@@ -149,6 +164,7 @@
 
       this.game.physics.arcade.collide(this.coffee, this.earth, undefined, function() {
         this.coffee.kill();
+        this.playFx(this.sounds.actions.miss);
       }, this);
     }
   };
