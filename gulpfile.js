@@ -1,15 +1,16 @@
-var gulp = require('gulp')
-  , gutil = require('gulp-util')
-  , del = require('del')
-  , concat = require('gulp-concat')
-  , rename = require('gulp-rename')
-  , minifycss = require('gulp-minify-css')
-  , minifyhtml = require('gulp-minify-html')
-  , processhtml = require('gulp-processhtml')
-  , jshint = require('gulp-jshint')
-  , uglify = require('gulp-uglify')
-  , connect = require('gulp-connect')
-  , paths;
+var gulp = require('gulp'),
+  gutil = require('gulp-util'),
+  del = require('del'),
+  concat = require('gulp-concat'),
+  rename = require('gulp-rename'),
+  minifycss = require('gulp-minify-css'),
+  minifyhtml = require('gulp-minify-html'),
+  processhtml = require('gulp-processhtml'),
+  jshint = require('gulp-jshint'),
+  uglify = require('gulp-uglify'),
+  connect = require('gulp-connect'),
+  browserify = require('browserify'),
+  paths;
 
 paths = {
   assets: 'src/assets/**/*',
@@ -83,7 +84,11 @@ gulp.task('html', function(){
     .on('error', gutil.log);
 });
 
-gulp.task('serve', function () {
+gulp.task('browserify', function() {
+  return browserify('.src/*.js').bundle();
+});
+
+gulp.task('serve', ['browserify'], function () {
   connect.server({
     root: [__dirname + '/src'],
     port: 9000,
