@@ -21,15 +21,15 @@
       this.load.image('player', 'assets/player.png');
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
 
-      this.load.image('earth'        , 'assets/earth.png');
-      this.load.image('mocha'        , 'assets/mocha.png');
-      this.load.image('coffee'       , 'assets/coffee.png');
-      this.load.image('cannon'       , 'assets/cannon.png');
-      this.load.image('pinpoint'     , 'assets/location.png');
-      this.load.image('pum'          , 'assets/pum.png');
-      this.load.image('meteor'       , 'assets/pum.png');
-      this.load.image('bg'           , 'assets/background.png');
-      this.load.spritesheet('flames' , 'assets/flames.png', 36, 62, 3);
+      this.load.image('earth'    , 'assets/earth.png');
+      this.load.image('mocha'    , 'assets/mocha.png');
+      this.load.image('coffee'   , 'assets/coffee.png');
+      this.load.image('cannon'   , 'assets/cannon.png');
+      this.load.image('pinpoint' , 'assets/location.png');
+      this.load.image('pum'      , 'assets/pum.png');
+      this.load.image('meteor'      , 'assets/pum.png');
+      this.load.image('bg'       , 'assets/background.png');
+      this.load.spritesheet('flames', 'assets/flames.png', 62, 36, 3);
 
       this.loadSounds(['fire',
         'hit',

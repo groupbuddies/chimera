@@ -129,24 +129,20 @@
       this.coffeeCup.checkWorldBounds = true;
       this.coffeeCup.anchor.set(0.5, 1);
       this.coffeeCup.scale.set(0.2, 0.2);
+      this.game.physics.arcade.enable(this.coffeeCup);
+
 
       this.coffeeFlame = this.coffee.create(0, 0, 'flames');
-      this.coffeeFlame.anchor.set(0.5, 0);
+      this.coffeeFlame.anchor.set(0.5, 0.5);
       this.coffeeFlame.animations.add('walk');
       this.coffeeFlame.animations.play('walk', 10, true);
       this.coffeeFlame.scale.set(0.15, 0.15);
 
-      this.coffee.rotation = Math.PI * 0.5;
+      this.game.physics.arcade.enable(this.coffeeCup);
+
       this.coffee.outOfBoundsKill = true;
-      this.game.physics.enable(this.coffee, Phaser.Physics.ARCADE);
 
-      var tween = this.game.add.tween(this.coffee).to({
-        x: [this.cannonTip().x, this.game.width * 0.66, this.target.x, this.target.x],
-        y: [this.cannonTip().y, this.target.y, this.target.y, this.target.y],
-      }, 3000,Phaser.Linear , true).interpolation(function(v, k){
-        return Phaser.Math.bezierInterpolation(v, k);
-      });
-
+      this.coffeeCup.body.velocity.x = 500;
       this.playFx(this.sounds.actions.fire);
       this.line.visible = false;
     },
@@ -161,11 +157,7 @@
       this.lineProperties.clear();
       this.lineProperties.ctx.beginPath();
       this.lineProperties.ctx.moveTo(this.cannonTip().x, this.cannonTip().y);
-      this.lineProperties.ctx.bezierCurveTo(
-        this.game.width * 0.8, this.target.y, //controll 1
-        this.target.x, this.target.y, // controll 2
-        this.target.x, this.target.y
-      );
+      this.lineProperties.ctx.lineTo(this.target.x, this.target.y);
       this.lineProperties.ctx.stroke();
       this.lineProperties.ctx.closePath();
       this.lineProperties.render();
@@ -261,7 +253,6 @@
       if (!this.coffeeCup || !this.coffeeCup.exists) {
         return;
       }
-
 
       if (this.circlesOverlap(this.earth, this.coffeeCup)) {
         this.pinpoints.forEach(function(pin) {
