@@ -2,6 +2,7 @@ var Earth = require('../entities/earth');
 var Line = require('../entities/line');
 var Earth = require('../entities/earth');
 var Cannon = require('../entities/cannon');
+var Keyboard = require('../entities/keyboard');
 var PlanetMocha = require('../entities/planet_mocha');
 
 var Game = function () {
@@ -27,9 +28,10 @@ Game.prototype = {
     this.line = new Line(this, this.game, 0, 0, this.target, this.cannon);
 
     this.cursors = this.game.input.keyboard.createCursorKeys();
+    this.keyboard = new Keyboard(this.cursors, this.target, this.earth);
   },
 
   update: function () {
-
+    this.keyboard.update();
   }
 };
