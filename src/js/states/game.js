@@ -85,10 +85,11 @@
       this.trajectoryLine();
 
       this.sounds = {
-        soundtrack: null,
+        soundtrack: this.game.add.audio('soundtrack'),
         actions: {
             fire: this.game.add.audio('fire'),
             hit:  this.game.add.audio('hit'),
+            hit:  this.game.add.audio('earth_hit'),
             miss: this.game.add.audio('miss')
         }
       };
@@ -188,7 +189,7 @@
 
       this.game.physics.arcade.collide(this.coffee, this.earth, undefined, function() {
         this.coffee.kill();
-        this.playFx(this.sounds.actions.miss);
+        this.playFx(this.sounds.actions.earch_hit);
       }, this);
     }
   };

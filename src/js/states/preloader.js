@@ -29,7 +29,12 @@
       this.load.image('house'  , 'assets/target_house.png');
       this.load.image('pum'    , 'assets/pum.png');
 
-      this.loadSounds(['fire','hit','miss']);
+      this.loadSounds(['fire',
+        'hit',
+        'earth_hit',
+        'miss',
+        'soundtrack'
+      ]);
     },
 
     loadSounds: function(sounds){
