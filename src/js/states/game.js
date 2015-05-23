@@ -37,31 +37,31 @@
       this.cannon.scale.set(0.25, 0.25);
       this.cannon.anchor.set(0.5, 1.2);
 
-      this.housesArr = [];
+      this.pinpointsArr = [];
       this.pumsArr   = [];
-      this.houses = this.game.add.group();
+      this.pinpoints = this.game.add.group();
       this.pums   = this.game.add.group();
 
       for(var i=0; i<5; i++){
-        var house   = this.add.sprite(0, 0, 'house');
+        var pinpoint   = this.add.sprite(0, 0, 'pinpoint');
         var pum     = this.add.sprite(0, 0, 'pum');
-        house.angle = 180-40*i;
+        pinpoint.angle = this.genPinPointAngle();
         pum.angle   = 180-40*i;
-        this.housesArr.push(house);
-        this.houses.add(house);
+        this.pinpointsArr.push(pinpoint);
+        this.pinpoints.add(pinpoint);
         this.pumsArr.push(pum);
         this.pums.add(pum);
       }
 
-      this.houses.setAll('scale',  {x:0.2, y:0.2});
-      this.houses.setAll('anchor', {x: -3, y:  0});
-      this.pums.setAll('scale',    {x:0.2, y:0.2});
-      this.pums.setAll('anchor',   {x: -3, y:  0});
+      this.pinpoints.setAll('scale',  {x:1, y:1});
+      this.pinpoints.setAll('anchor', {x:-12.9 , y:  0});
+      this.pums.setAll('scale',    {x:0.3, y:0.3});
+      this.pums.setAll('anchor',   {x: -8, y:  0});
       this.pums.setAll('visible',  false);
 
 
       for(var i=0; i<5; i++){
-        this.earth.addChild(this.housesArr[i]);
+        this.earth.addChild(this.pinpointsArr[i]);
         this.earth.addChild(this.pumsArr[i]);
       }
 
@@ -95,6 +95,9 @@
       this.textSprite = this.game.add.text(10, 10, 'SCORE: 0', this.style);
     },
 
+    genPinPointAngle : function(){
+        return Math.floor(Math.random()*(10-2)+2)*20;
+    },
     update: function () {
       this.earth.angle = (this.game.time.now) * 0.00008 * (180 / Math.PI);
       this.trajectoryLine();

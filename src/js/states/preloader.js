@@ -21,13 +21,13 @@
       this.load.image('player', 'assets/player.png');
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
 
-      this.load.image('earth', 'assets/earth.png');
-      this.load.image('mocha', 'assets/mocha.png');
-      this.load.image('coffee', 'assets/coffee.png');
-      this.load.image('cannon', 'assets/cannon.png');
-      this.load.image('house'  , 'assets/target_house.png');
-      this.load.image('pum'    , 'assets/pum.png');
-      this.load.image('bg', 'assets/background.png');
+      this.load.image('earth'    , 'assets/earth.png');
+      this.load.image('mocha'    , 'assets/mocha.png');
+      this.load.image('coffee'   , 'assets/coffee.png');
+      this.load.image('cannon'   , 'assets/cannon.png');
+      this.load.image('pinpoint' , 'assets/location.png');
+      this.load.image('pum'      , 'assets/pum.png');
+      this.load.image('bg'       , 'assets/background.png');
 
       this.loadSounds(['fire',
         'hit',
