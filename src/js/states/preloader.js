@@ -20,6 +20,8 @@
     loadResources: function () {
       this.load.image('player', 'assets/player.png');
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
+
+      this.load.image('circle', 'assets/circle.png');
     },
 
     create: function () {
@@ -28,7 +30,7 @@
 
     update: function () {
       if (!!this.ready) {
-        this.game.state.start('menu');
+        this.game.state.start('game');
       }
     },
 
