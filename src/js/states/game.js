@@ -40,28 +40,10 @@
 
       var numPins = 100;
 
-      for(var i=0; i<numPins; i++){
-        var pinpoint   = this.pinpoints.create(0, 0, 'pinpoint');
-        var pum        = this.pums.create(0, 0, 'pum');
-        pinpoint.angle = this.genPinPointAngle();
-        pum.angle      = pinpoint.angle;
-      }
-
-      this.pums.setAll('scale',    {x:0.2, y:0.2});
-      this.pums.setAll('visible',  false);
+      for(var i=0; i<numPins; i++){ this.newPin(); }
 
       this.earth.addChild(this.pinpoints);
       this.earth.addChild(this.pums);
-
-      this.pinpoints.forEach(function(pin) {
-        pin.x = this.earth.width * 0.8 * Math.cos(pin.angle * Math.PI / 180);
-        pin.y = this.earth.width * 0.8 * Math.sin(pin.angle * Math.PI / 180);
-      }, this);
-
-      this.pums.forEach(function(pum) {
-        pum.x = this.earth.width * 0.8 * Math.cos(pum.angle * Math.PI / 180);
-        pum.y = this.earth.width * 0.8 * Math.sin(pum.angle * Math.PI / 180);
-      }, this);
 
       this.keyShoot = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
       this.keyShoot.onDown.add(this.fire, this);
@@ -323,11 +305,37 @@
           this.coffee.hit = true;
           this.playFx(this.sounds.actions.hit);
           this.score += 1;
+          this.game.time.events.add(Phaser.Timer.SECOND,  function(){ this.renewPin(minDistIndex); }.bind(this), this);
         }
 
         this.coffee.kill();
         this.line.visible = true;
       }
+    },
+    newPin: function(){
+        var pin   = this.pinpoints.create(0, 0, 'pinpoint');
+        var pum        = this.pums.create(0, 0, 'pum');
+        pin.angle = this.genPinPointAngle();
+        pum.angle      = pin.angle;
+        pum.scale      = {x:0.2, y:0.2};
+        pum.visible    = false;
+
+        this.pinpoints.add(pin);
+        this.pums.add(pum);
+
+        pin.x = this.earth.width * 0.8 * Math.cos(pin.angle * Math.PI / 180);
+        pin.y = this.earth.width * 0.8 * Math.sin(pin.angle * Math.PI / 180);
+
+        pum.x = this.earth.width * 0.8 * Math.cos(pum.angle * Math.PI / 180);
+        pum.y = this.earth.width * 0.8 * Math.sin(pum.angle * Math.PI / 180);
+
+    },
+    renewPin: function(index){
+        var pinpoint = this.pinpoints.getChildAt(index);
+        var pum      = this.pums.getChildAt(index);
+        pinpoint.kill();
+        pum.kill();
+        this.game.time.events.add(Phaser.Timer.SECOND*2,  this.newPin, this);
     },
 
     circlesOverlap: function(circle1,circle2) {
