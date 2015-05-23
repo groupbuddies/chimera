@@ -9,25 +9,24 @@
   Game.prototype = {
 
     create: function () {
-      var x = this.game.width * 1.1
-        , y = this.game.height / 2;
-
       this.cursors = this.game.input.keyboard.createCursorKeys();
 
       this.target = { x: this.game.width * 1.1, y: this.game.height / 2 };
 
-      this.earth = this.add.sprite(x, y, 'circle');
+      this.earth = this.add.sprite(this.game.width * 1.1, this.game.height * 0.5, 'circle');
       this.earth.anchor.setTo(0.5, 0.5);
       this.game.physics.enable(this.earth, Phaser.Physics.ARCADE);
+
+      this.moon = this.add.sprite(0, this.game.height * 0.5, 'circle');
+      this.moon.scale.set(0.3, 0.3);
+      this.moon.anchor.setTo(0.5, 0.5);
 
       this.player = this.game.add.group();
       this.player.position.x = 0;
       this.player.position.y = this.game.height * 0.5;
-      this.moon = this.player.create(0, 0, 'circle');
       this.canon = this.player.create(0, 0, 'canon');
       this.player.setAll('anchor.x', 0.5)
       this.player.setAll('anchor.y', 0.5)
-      this.moon.scale.set(0.3, 0.3);
       this.canon.position.x = this.moon.width * 0.5;
 
       this.houses = [];
@@ -130,7 +129,7 @@
         angle = 360 - (-angle);
       }
 
-      this.player.angle = angle;
+      this.canon.angle = angle;
     },
 
     checkCoffeeCollision: function() {
