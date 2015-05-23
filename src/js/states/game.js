@@ -189,7 +189,7 @@
         this.coffee.kill();
         this.line.visible = true;
         this.playFx(this.sounds.actions.earth_hit);
-      }, this);
+      }.bind(this));
     },
 
     rectangleOverCircle: function(circle,rect) {
