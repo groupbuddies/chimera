@@ -56,12 +56,12 @@
       this.pinpoints.forEach(function(pin) {
         pin.x = this.earth.width * 0.8 * Math.cos(pin.angle * Math.PI / 180);
         pin.y = this.earth.width * 0.8 * Math.sin(pin.angle * Math.PI / 180);
-      }, this)
+      }, this);
 
       this.pums.forEach(function(pum) {
         pum.x = this.earth.width * 0.8 * Math.cos(pum.angle * Math.PI / 180);
         pum.y = this.earth.width * 0.8 * Math.sin(pum.angle * Math.PI / 180);
-      }, this)
+      }, this);
 
       this.keyShoot = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
       this.keyShoot.onDown.add(this.fire, this);
@@ -162,8 +162,6 @@
     },
 
     trajectoryLine: function() {
-      var maxHeight = this.target.y - this.earth.y / 2;
-
       this.lineProperties.clear();
       this.lineProperties.ctx.beginPath();
       this.lineProperties.ctx.moveTo(this.cannonTip().x, this.cannonTip().y);
@@ -185,13 +183,15 @@
       var margin = 60;
 
       if (this.cursors.down.isDown) {
-        if (this.target.y < this.earth.y + this.earth.height / 2 + margin)
+        if (this.target.y < this.earth.y + this.earth.height / 2 + margin) {
           this.target.y += velocity;
+        }
       }
 
       if (this.cursors.up.isDown) {
-        if (this.target.y > this.earth.y - this.earth.height / 2 - margin)
+        if (this.target.y > this.earth.y - this.earth.height / 2 - margin) {
           this.target.y -= velocity;
+        }
       }
 
     },
@@ -201,11 +201,13 @@
       var margin = 60;
 
       if(this.game.input.mouse.wheelDelta === Phaser.Mouse.WHEEL_UP){
-        if (this.target.y < this.earth.y + this.earth.height / 2 + margin)
+        if (this.target.y < this.earth.y + this.earth.height / 2 + margin) {
           this.target.y -= velocity;
+        }
       } else {
-        if (this.target.y > this.earth.y - this.earth.height / 2 - margin)
+        if (this.target.y > this.earth.y - this.earth.height / 2 - margin) {
           this.target.y += velocity;
+        }
       }
 
     },
@@ -284,7 +286,7 @@
         var random = function() {
             var x = Math.sin(seed++) * 10000;
             return x - Math.floor(x);
-        }
+        };
         var rand = Math.floor(random() * (max - min + 1)) + min;
         return rand;
     },
