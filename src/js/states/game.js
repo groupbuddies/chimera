@@ -54,7 +54,7 @@
       this.coffee.checkWorldBounds = true;
       this.coffee.outOfBoundsKill = true;
       this.game.physics.enable(this.coffee, Phaser.Physics.ARCADE);
-      this.coffee.body.velocity.x = 500;
+      this.game.physics.arcade.moveToXY(this.coffee, this.target.x, this.target.y, 300, 500);
     },
 
     trajectoryLine: function() {
