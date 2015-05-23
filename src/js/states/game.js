@@ -17,9 +17,9 @@
       this.target = { x: this.game.width * 1.1, y: this.game.height / 2 };
 
       this.earth = this.add.sprite(this.game.width * 1.35, this.game.height * 0.5, 'earth');
-      this.earth.scale.set(0.6, 0.6)
+      this.earth.scale.set(0.6, 0.6);
       this.earth.anchor.setTo(0.5, 0.5);
-      this.earth.r = (this.game.width * 1.8) / 2;
+      this.earth.r = (this.earth.width * 0.5) * 0.95;
 
       this.game.physics.enable(this.earth, Phaser.Physics.ARCADE);
 
@@ -115,7 +115,7 @@
       var tween = this.game.add.tween(this.coffee).to({
         x: [this.cannonTip().x, this.game.width * 0.66, this.target.x, this.target.x],
         y: [this.cannonTip().y, this.target.y, this.target.y, this.target.y],
-      }, 2000,Phaser.Linear , true).interpolation(function(v, k){
+      }, 4000,Phaser.Linear , true).interpolation(function(v, k){
         return Phaser.Math.bezierInterpolation(v, k);
       });
 
@@ -185,7 +185,7 @@
         if (!this.coffee) { return; }
 
         if (!this.rectangleOverCircle(this.earth, this.coffee)) { return; }
-        console.log('kill!');
+
         this.coffee.kill();
         this.line.visible = true;
         this.playFx(this.sounds.actions.earth_hit);
