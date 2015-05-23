@@ -24,25 +24,26 @@
       // this.game.add.sprite(0, 0, this.bg);
       
       this.bg = this.add.sprite(0, 0, 'bg');
+      this.bg.scale.set(0.5, 0.5);
 
       this.cursors = this.game.input.keyboard.createCursorKeys();
 
       this.target = { x: this.game.width * 1.1, y: this.game.height / 2 };
 
-      this.earth = this.add.sprite(this.game.width * 1.8, this.game.height * 0.5, 'earth');
-      this.earth.scale.set(1.2, 1.2)
+      this.earth = this.add.sprite(this.game.width * 1.35, this.game.height * 0.5, 'earth');
+      this.earth.scale.set(0.6, 0.6)
       this.earth.anchor.setTo(0.5, 0.5);
       this.game.physics.enable(this.earth, Phaser.Physics.ARCADE);
 
       this.mocha = this.add.sprite(0, this.game.height * 0.5, 'mocha');
       this.mocha.anchor.setTo(0.5, 0.5);
-      this.mocha.scale.set(0.4, 0.4);
+      this.mocha.scale.set(0.2, 0.2);
       this.mocha.angle = 90;
 
       this.cannon = this.add.sprite(0, 0, 'cannon');
       this.cannon.position.x = this.mocha.height * 0.45;
       this.cannon.position.y = this.game.height * 0.5;
-      this.cannon.scale.set(0.5, 0.5);
+      this.cannon.scale.set(0.25, 0.25);
       this.cannon.anchor.set(0.5, 1.2);
 
       this.housesArr = [];
@@ -79,8 +80,8 @@
       this.lineProperties = this.add.bitmapData(this.game.width, this.game.height);
       this.lineProperties.ctx.beginPath();
       this.lineProperties.ctx.lineWidth = '2';
-      this.lineProperties.ctx.setLineDash([5, 6]);
-      this.lineProperties.ctx.strokeStyle = 'black';
+      this.lineProperties.ctx.setLineDash([2, 15]);
+      this.lineProperties.ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
       this.lineProperties.ctx.stroke();
 
       this.line = this.add.sprite(0, 0, this.lineProperties);
