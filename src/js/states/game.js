@@ -193,7 +193,7 @@
 
       this.game.physics.arcade.collide(this.coffee, this.earth, undefined, function() {
         this.coffee.kill();
-        this.playFx(this.sounds.actions.earch_hit);
+        this.playFx(this.sounds.actions.earth_hit);
       }, this);
     }
   };
