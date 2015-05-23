@@ -28,7 +28,7 @@
       this.mocha.angle = 90;
 
       this.cannon = this.add.sprite(0, 0, 'cannon');
-      this.cannon.position.x = this.mocha.height * 0.47;
+      this.cannon.position.x = this.mocha.height * 0.45;
       this.cannon.position.y = this.game.height * 0.5;
       this.cannon.scale.set(0.25, 0.25);
       this.cannon.anchor.set(0.5, 1.2);
@@ -177,7 +177,7 @@
 
     },
 
-    mouseMovePlayer: function(event){
+    mouseMovePlayer: function(){
       var velocity = 20;
       var margin = 60;
 
