@@ -22,7 +22,7 @@
       // this.bg.ctx.fillStyle = gradient;
       // this.bg.ctx.fillRect(0, 0, this.game.width, this.game.height);
       // this.game.add.sprite(0, 0, this.bg);
-      
+
       this.bg = this.add.sprite(0, 0, 'bg');
       this.bg.scale.set(0.5, 0.5);
 
@@ -33,6 +33,8 @@
       this.earth = this.add.sprite(this.game.width * 1.35, this.game.height * 0.5, 'earth');
       this.earth.scale.set(0.6, 0.6)
       this.earth.anchor.setTo(0.5, 0.5);
+      this.earth.r = (this.game.width * 1.8) / 2;
+
       this.game.physics.enable(this.earth, Phaser.Physics.ARCADE);
 
       this.mocha = this.add.sprite(0, this.game.height * 0.5, 'mocha');
@@ -193,11 +195,31 @@
         return;
       }
 
-      this.game.physics.arcade.collide(this.coffee, this.earth, undefined, function() {
+      this.game.physics.arcade.overlap(this.coffee, this.earth, function() {
+        if (!this.coffee) { return; }
+
+        if (!this.rectangleOverCircle(this.earth, this.coffee)) { return; }
+        console.log('kill!');
         this.coffee.kill();
         this.line.visible = true;
         this.playFx(this.sounds.actions.earth_hit);
       }, this);
+    },
+
+    rectangleOverCircle: function(circle,rect) {
+      var distX = Math.abs(circle.x - rect.x-rect.width/2);
+      var distY = Math.abs(circle.y - rect.y-rect.height/2);
+
+      if (distX > (rect.width/2 + circle.r)) { return false; }
+      if (distY > (rect.height/2 + circle.r)) { return false; }
+
+      if (distX <= (rect.width/2)) { return true; }
+      if (distY <= (rect.height/2)) { return true; }
+
+      var dx=distX-rect.width/2;
+      var dy=distY-rect.height/2;
+
+      return (dx*dx+dy*dy<=(circle.r*circle.r));
     }
   };
 
