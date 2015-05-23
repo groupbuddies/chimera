@@ -28,6 +28,7 @@
       this.load.image('pinpoint' , 'assets/location.png');
       this.load.image('pum'      , 'assets/pum.png');
       this.load.image('bg'       , 'assets/background.png');
+      this.load.spritesheet('flames', 'assets/flames.png', 36, 62, 3);
 
       this.loadSounds(['fire',
         'hit',

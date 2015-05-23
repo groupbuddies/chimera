@@ -113,15 +113,26 @@
 
     fire: function() {
       // only one coffee at a time
-      if (!!this.coffee && this.coffee.exists) {
+      if (!!this.coffeeCup && this.coffeeCup.exists) {
         return;
       }
 
-      this.coffee = this.add.sprite(this.cannonTip().x, this.cannonTip().y, 'coffee');
-      this.coffee.anchor.setTo(0.5, 1);
+      this.coffee = this.add.group();
+      this.coffee.position.x = this.cannonTip().x
+      this.coffee.position.y = this.cannonTip().y
+
+      this.coffeeCup = this.coffee.create(0, 0, 'coffee');
+      this.coffeeCup.checkWorldBounds = true;
+      this.coffeeCup.anchor.set(0.5, 1);
+      this.coffeeCup.scale.set(0.2, 0.2);
+
+      this.coffeeFlame = this.coffee.create(0, 0, 'flames');
+      this.coffeeFlame.anchor.set(0.5, 0);
+      this.coffeeFlame.animations.add('walk');
+      this.coffeeFlame.animations.play('walk', 10, true);
+      this.coffeeFlame.scale.set(0.15, 0.15);
+
       this.coffee.rotation = Math.PI * 0.5;
-      this.coffee.scale.set(0.3, 0.3);
-      this.coffee.checkWorldBounds = true;
       this.coffee.outOfBoundsKill = true;
       this.game.physics.enable(this.coffee, Phaser.Physics.ARCADE);
 
@@ -190,17 +201,19 @@
     },
 
     checkCoffeeCollision: function() {
-      if (!this.coffee || !this.coffee.exists) {
+      if (!this.coffeeCup || !this.coffeeCup.exists) {
         return;
       }
 
-      this.game.physics.arcade.overlap(this.coffee, this.earth, function() {
+      this.game.physics.arcade.overlap(this.coffeeCup, this.earth, function() {
         if (!this.coffee) { return; }
 
         if (!this.rectangleOverCircle(this.earth, this.coffee)) { return; }
 
         this.score += 1;
-        this.coffee.kill();
+        this.coffee.remove(this.coffeeCup);
+        this.coffeeCup.kill();
+        this.coffeeFlame.kill();
         this.line.visible = true;
         this.playFx(this.sounds.actions.earth_hit);
       }.bind(this));
