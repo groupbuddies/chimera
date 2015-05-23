@@ -18,10 +18,10 @@
 
       this.target = { x: this.game.width * 1.1, y: this.game.height / 2 };
 
-      this.earth = this.add.sprite(this.game.width * 1.35, this.game.height * 0.5, 'earth');
-      this.earth.scale.set(0.6, 0.6);
+      this.earth = this.add.sprite(this.game.width * 1.72, this.game.height * 0.5, 'earth');
       this.earth.anchor.setTo(0.5, 0.5);
-      this.earth.r = (this.earth.width * 0.5) * 0.95;
+      this.earth.r = (this.earth.width * 0.5);
+      // this.earth.scale.set(0.8, 0.6);
 
       this.mocha = this.add.sprite(0, this.game.height * 0.5, 'mocha');
       this.mocha.anchor.setTo(0.5, 0.5);
@@ -314,19 +314,22 @@
         var pin   = this.pinpoints.create(0, 0, 'pinpoint');
         var pum        = this.pums.create(0, 0, 'pum');
         pin.angle = this.genPinPointAngle();
-        pin.r          = 1;
+        pin.r          = 2;
         pum.angle      = pin.angle;
+        pin.scale      = {x: 0.8, y: 0.8};
+        pin.anchor     = {x: 0., y: 0.5};
         pum.scale      = {x:0.2, y:0.2};
+        pum.anchor     = {x: 0., y: 0.5};
         pum.visible    = false;
 
         this.pinpoints.add(pin);
         this.pums.add(pum);
 
-        pin.x = this.earth.width * 0.8 * Math.cos(pin.angle * Math.PI / 180);
-        pin.y = this.earth.width * 0.8 * Math.sin(pin.angle * Math.PI / 180);
+        pin.x = this.earth.width * 0.495 * Math.cos(pin.angle * Math.PI / 180);
+        pin.y = this.earth.width * 0.495 * Math.sin(pin.angle * Math.PI / 180);
 
-        pum.x = this.earth.width * 0.8 * Math.cos(pum.angle * Math.PI / 180);
-        pum.y = this.earth.width * 0.8 * Math.sin(pum.angle * Math.PI / 180);
+        pum.x = this.earth.width * 0.495 * Math.cos(pum.angle * Math.PI / 180);
+        pum.y = this.earth.width * 0.495 * Math.sin(pum.angle * Math.PI / 180);
 
     },
     renewPin: function(index){
