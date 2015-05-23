@@ -21,21 +21,22 @@
       this.load.image('player', 'assets/player.png');
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
 
-      this.load.image('earth'    , 'assets/earth.svg');
-      this.load.image('mocha'    , 'assets/mocha.svg');
-      this.load.image('coffee'   , 'assets/coffee.png');
-      this.load.image('cannon'   , 'assets/cannon.png');
-      this.load.image('pinpoint' , 'assets/location.png');
-      this.load.image('pum'      , 'assets/pum.png');
-      this.load.image('meteor'   , 'assets/comet-flame.png');
-      this.load.image('bg'       , 'assets/background.png');
+      this.load.image('earth'      , 'assets/earth.png');
+      this.load.image('mocha'      , 'assets/mocha.svg');
+      this.load.image('coffee'     , 'assets/coffee.png');
+      this.load.image('cannon'     , 'assets/cannon.png');
+      this.load.image('pinpoint'   , 'assets/location.png');
+      this.load.image('pum'        , 'assets/pum.png');
+      this.load.image('meteor'     , 'assets/comet-flame.png');
+      this.load.image('astronaut'  , 'assets/astronaut.svg');
+      this.load.image('bg'         , 'assets/background.png');
 
       this.load.spritesheet('flames' , 'assets/flames.png', 62, 36, 3);
 
       this.loadSounds(['fire',
         'hit',
         'earth_hit',
-        'meteor_hit',
+        'junk_hit',
         'miss',
         'soundtrack'
       ]);

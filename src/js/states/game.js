@@ -63,7 +63,7 @@
             fire       : this.game.add.audio('fire'),
             hit        : this.game.add.audio('hit'),
             earth_hit  : this.game.add.audio('earth_hit'),
-            meteor_hit : this.game.add.audio('meteor_hit'),
+            junk_hit   : this.game.add.audio('junk_hit'),
             miss       : this.game.add.audio('miss')
         }
       };
@@ -75,7 +75,7 @@
       this.textSprite = this.game.add.text(10, 10, 'SCORE: 0', this.style);
 
 
-      this.game.time.events.loop(Phaser.Timer.SECOND,  this.maybeGenMeteor, this);
+      this.game.time.events.loop(Phaser.Timer.SECOND,  this.maybeGenJunk, this);
     },
 
     genPinPointAngle : function(){
@@ -219,11 +219,11 @@
       this.updateCoffeeSpeed();
     },
 
-    maybeGenMeteor: function(){
-        // Run every second, generate meteor prob% of the times
+    maybeGenJunk: function(){
+        // Run every second, generate junk prob% of the times
         var prob = 80;
         if(this.random(1,100) < prob){
-            this.meteors = this.meteors || this.game.add.group();
+            this.junks = this.junks || this.game.add.group();
             var from = {}; var to   = {};
             var rand = this.random(0,3);
             if(rand<1){
@@ -248,15 +248,39 @@
                 to.y   = -50;
             }
 
-            var meteor = this.add.sprite(from.x, from.y, 'meteor');
-            this.meteors.add(meteor);
-            meteor.outOfBoundsKill = true;
-            meteor.scale.set(0.3, 0.3);
+            var junk;
+            var prob = this.random(1,10);
+            // Meteor
+            if(prob < 7){
+                junk = this.add.sprite(from.x, from.y, 'meteor');
+                this.junks.add(junk);
+                junk.anchor.set(0.5, 0.5);
+                junk.scale.set(0.3, 0.3);
+            }
+            // Astronaut
+            else {
+                junk = this.add.sprite(from.x, from.y, 'astronaut');
+                this.junks.add(junk);
+                junk.anchor.set(0.5, 0.5);
+                junk.scale.set(0.7, 0.7);
+            }
 
-            meteor.anchor.set();
-            this.game.physics.enable(meteor, Phaser.Physics.ARCADE);
-            var angle = this.game.physics.arcade.moveToXY(meteor,to.x, to.y, 60);
-            meteor.rotation = angle+Math.PI;
+            junk.outOfBoundsKill = true;
+            this.game.physics.enable(junk, Phaser.Physics.ARCADE);
+            var angle = this.game.physics.arcade.moveToXY(junk,to.x, to.y, 60);
+
+            // Meteor
+            if(prob < 7){
+                var angle = this.game.physics.arcade.moveToXY(junk,to.x, to.y, 60);
+                junk.rotation = angle+Math.PI-0.2;
+                var tween = this.add.tween(junk).to({rotation: angle+Math.PI+0.2}, 50, Phaser.Easing.Linear.None, true, 0, -1, true  );
+                tween.start();
+            }
+            // Astronaut
+            else {
+                this.game.physics.arcade.moveToXY(junk,to.x, to.y, 10);
+                junk.body.angularVelocity = 50;
+            }
         }
     },
     random: function(min, max) {
