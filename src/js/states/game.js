@@ -37,7 +37,7 @@
       this.pinpoints = this.game.add.group();
       this.pums      = this.game.add.group();
 
-      var numPins = 10;
+      var numPins = 20;
 
       for(var i=0; i<numPins; i++){ this.newPin(); }
 
@@ -251,13 +251,12 @@
             var meteor = this.add.sprite(from.x, from.y, 'meteor');
             this.meteors.add(meteor);
             meteor.outOfBoundsKill = true;
-            meteor.scale.set(0.1, 0.1);
-            var tween  = this.game.add.tween(meteor).to(to,10000);
-            tween.start();
-
+            meteor.scale.set(0.3, 0.3);
 
             meteor.anchor.set();
             this.game.physics.enable(meteor, Phaser.Physics.ARCADE);
+            var angle = this.game.physics.arcade.moveToXY(meteor,to.x, to.y, 60);
+            meteor.rotation = angle+Math.PI;
         }
     },
     random: function(min, max) {

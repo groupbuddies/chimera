@@ -27,9 +27,10 @@
       this.load.image('cannon'   , 'assets/cannon.png');
       this.load.image('pinpoint' , 'assets/location.png');
       this.load.image('pum'      , 'assets/pum.png');
-      this.load.image('meteor'      , 'assets/pum.png');
+      this.load.image('meteor'   , 'assets/comet-flame.png');
       this.load.image('bg'       , 'assets/background.png');
-      this.load.spritesheet('flames', 'assets/flames.png', 62, 36, 3);
+
+      this.load.spritesheet('flames' , 'assets/flames.png', 62, 36, 3);
 
       this.loadSounds(['fire',
         'hit',
