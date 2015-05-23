@@ -21,9 +21,11 @@
       this.load.image('player', 'assets/player.png');
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
 
-      this.load.image('circle' , 'assets/circle.png');
-      this.load.image('java'   , 'assets/java.png');
-      this.load.image('canon'  , 'assets/canon.png');
+      this.load.image('circle', 'assets/circle.png');
+      this.load.image('earth', 'assets/earth.png');
+      this.load.image('mocha', 'assets/mocha.png');
+      this.load.image('java', 'assets/java.png');
+      this.load.image('cannon', 'assets/cannon.png');
       this.load.image('house'  , 'assets/target_house.png');
       this.load.image('pum'    , 'assets/pum.png');
 
