@@ -9,19 +9,21 @@
   Game.prototype = {
 
     create: function () {
-      this.bg = this.add.bitmapData(this.game.width, this.game.height);
-      var gradient = this.bg.ctx.createRadialGradient(
-          this.game.width* 0.5,
-          this.game.height * 0.5,
-          200,
-          this.game.width*0.5,
-          this.game.height*0.5,
-          400);
-      gradient.addColorStop(0, "#3B3352");
-      gradient.addColorStop(1, "#241C3D");
-      this.bg.ctx.fillStyle = gradient;
-      this.bg.ctx.fillRect(0, 0, this.game.width, this.game.height);
-      this.game.add.sprite(0, 0, this.bg);
+      // this.bg = this.add.bitmapData(this.game.width, this.game.height);
+      // var gradient = this.bg.ctx.createRadialGradient(
+      //     this.game.width* 0.5,
+      //     this.game.height * 0.5,
+      //     200,
+      //     this.game.width*0.5,
+      //     this.game.height*0.5,
+      //     400);
+      // gradient.addColorStop(0, "#3B3352");
+      // gradient.addColorStop(1, "#241C3D");
+      // this.bg.ctx.fillStyle = gradient;
+      // this.bg.ctx.fillRect(0, 0, this.game.width, this.game.height);
+      // this.game.add.sprite(0, 0, this.bg);
+      
+      this.bg = this.add.sprite(0, 0, 'bg');
 
       this.cursors = this.game.input.keyboard.createCursorKeys();
 
@@ -78,7 +80,7 @@
       this.lineProperties.ctx.beginPath();
       this.lineProperties.ctx.lineWidth = '2';
       this.lineProperties.ctx.setLineDash([5, 6]);
-      this.lineProperties.ctx.strokeStyle = 'red';
+      this.lineProperties.ctx.strokeStyle = 'black';
       this.lineProperties.ctx.stroke();
 
       this.line = this.add.sprite(0, 0, this.lineProperties);
@@ -113,9 +115,10 @@
         return;
       }
 
-      this.coffee = this.add.sprite(this.cannonTip().x, this.cannonTip().y, 'java');
-      this.coffee.anchor.setTo(0.5, 0.5);
-      this.coffee.scale.set(0.1, 0.1);
+      this.coffee = this.add.sprite(this.cannonTip().x, this.cannonTip().y, 'coffee');
+      this.coffee.anchor.setTo(0.5, 1);
+      this.coffee.rotation = Math.PI * 0.5;
+      this.coffee.scale.set(0.3, 0.3);
       this.coffee.checkWorldBounds = true;
       this.coffee.outOfBoundsKill = true;
       this.game.physics.enable(this.coffee, Phaser.Physics.ARCADE);
