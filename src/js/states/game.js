@@ -93,6 +93,7 @@
             miss: this.game.add.audio('miss')
         }
       };
+      this.sounds.soundtrack.play();
 
       this.game.world.bringToTop(this.mocha);
       this.game.world.bringToTop(this.earth);
