@@ -2,12 +2,9 @@
   'use strict';
 
   function Game() {
-    this.cannon = null;
-    this.line = null;
   }
 
   Game.prototype = {
-
     create: function () {
       this.randSeed = 1;
       this.score = 0;
@@ -113,6 +110,7 @@
       this.trajectoryLine();
       this.movePlayer();
       this.checkCoffeeCollision();
+      this.updateCoffeeSpeed();
       this.drawScore();
     },
 
@@ -148,7 +146,12 @@
     },
 
     updateCoffeeSpeed: function() {
-      var linearVelocity = 200;
+      if (!this.coffee) {
+        return;
+      }
+
+      var linearVelocity = 300;
+
       this.coffee.body.velocity.x = linearVelocity * Math.cos(this.coffee.angle * Math.PI / 180);
       this.coffee.body.velocity.y = linearVelocity * Math.sin(this.coffee.angle * Math.PI / 180);
     },
@@ -202,17 +205,19 @@
       this.cannon.angle = 90 + angle;
     },
     steerCoffee: function() {
-      var angularVelocity = 1;
+      var angularVelocity = 0.5;
 
       if (this.cursors.down.isDown) {
         this.coffee.angle += angularVelocity;
-        this.updateCoffeeSpeed();
+        this.coffee.lastSteeredAt = Date.now();
       }
 
       if (this.cursors.up.isDown) {
         this.coffee.angle -= angularVelocity;
-        this.updateCoffeeSpeed();
+        this.coffee.lastSteeredAt = Date.now();
       }
+
+      this.updateCoffeeSpeed();
     },
 
     maybeGenMeteor: function(){
