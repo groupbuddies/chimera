@@ -98,7 +98,7 @@
       this.textSprite = this.game.add.text(10, 10, 'SCORE: 0', this.style);
 
 
-      setInterval(function(){ this.maybeGenMeteor() }.bind(this), 1000);
+      this.game.time.events.loop(Phaser.Timer.SECOND,  this.maybeGenMeteor, this);
     },
 
     genPinPointAngle : function(){
