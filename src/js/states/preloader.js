@@ -21,7 +21,6 @@
       this.load.image('player', 'assets/player.png');
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
 
-      this.load.image('circle', 'assets/circle.png');
       this.load.image('earth', 'assets/earth.png');
       this.load.image('mocha', 'assets/mocha.png');
       this.load.image('coffee', 'assets/coffee.png');
