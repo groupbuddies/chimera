@@ -37,7 +37,7 @@
       this.pinpoints = this.game.add.group();
       this.pums      = this.game.add.group();
 
-      var numPins = 100;
+      var numPins = 10;
 
       for(var i=0; i<numPins; i++){ this.newPin(); }
 
@@ -315,6 +315,7 @@
         var pin   = this.pinpoints.create(0, 0, 'pinpoint');
         var pum        = this.pums.create(0, 0, 'pum');
         pin.angle = this.genPinPointAngle();
+        pin.r          = 1;
         pum.angle      = pin.angle;
         pum.scale      = {x:0.2, y:0.2};
         pum.visible    = false;
@@ -338,7 +339,7 @@
     },
 
     circlesOverlap: function(circle1,circle2) {
-      var distance = Math.sqrt(Math.pow(circle1.world.x - circle2.world.x, 2) + Math.pow(circle2.world.y - circle2.world.y, 2));
+      var distance = Math.sqrt(Math.pow(circle1.world.x - circle2.world.x, 2) + Math.pow(circle1.world.y - circle2.world.y, 2));
       return (distance < Math.max(circle1.r || circle1.width, circle2.r || circle2.width));
     },
     centerDists: function(circle1, circle2){
