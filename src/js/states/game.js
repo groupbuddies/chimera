@@ -29,22 +29,32 @@
       this.player.setAll('anchor.y', 0.5)
       this.canon.position.x = this.moon.width * 0.5;
 
-      this.houses = [];
-      this.pums   = [];
+      this.housesArr = [];
+      this.pumsArr   = [];
+      this.houses = this.game.add.group();
+      this.pums   = this.game.add.group();
 
       for(var i=0; i<5; i++){
         var house   = this.add.sprite(0, 0, 'house');
         var pum     = this.add.sprite(0, 0, 'pum');
         house.angle = 180-40*i;
         pum.angle   = 180-40*i;
-        house.scale.set(0.2, 0.2);
-        pum.scale.set(0.2, 0.2);
-        house.anchor.setTo(-3,0);
-        pum.anchor.setTo(-3,0);
-        this.houses.push(house);
-        this.pums.push(pum);
-        this.earth.addChild(house);
-        this.earth.addChild(pum);
+        this.housesArr.push(house);
+        this.houses.add(house);
+        this.pumsArr.push(pum);
+        this.pums.add(pum);
+      }
+
+      this.houses.setAll('scale',  {x:0.2, y:0.2});
+      this.houses.setAll('anchor', {x: -3, y:  0});
+      this.pums.setAll('scale',    {x:0.2, y:0.2});
+      this.pums.setAll('anchor',   {x: -3, y:  0});
+      this.pums.setAll('visible',  false);
+
+
+      for(var i=0; i<5; i++){
+        this.earth.addChild(this.housesArr[i]);
+        this.earth.addChild(this.pumsArr[i]);
       }
 
       this.keyShoot = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
