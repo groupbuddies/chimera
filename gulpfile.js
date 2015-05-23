@@ -83,7 +83,7 @@ gulp.task('html', function(){
     .on('error', gutil.log);
 });
 
-gulp.task('connect', function () {
+gulp.task('serve', function () {
   connect.server({
     root: [__dirname + '/src'],
     port: 9000,
