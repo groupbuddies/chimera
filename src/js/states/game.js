@@ -89,10 +89,10 @@
       this.sounds = {
         soundtrack: this.game.add.audio('soundtrack', 0.3, true),
         actions: {
-            fire: this.game.add.audio('fire'),
-            hit:  this.game.add.audio('hit'),
-            hit:  this.game.add.audio('earth_hit'),
-            miss: this.game.add.audio('miss')
+            fire      : this.game.add.audio('fire'),
+            hit       : this.game.add.audio('hit'),
+            earth_hit : this.game.add.audio('earth_hit'),
+            miss      : this.game.add.audio('miss')
         }
       };
       this.sounds.soundtrack.play();
