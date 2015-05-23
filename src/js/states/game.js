@@ -9,6 +9,7 @@
   Game.prototype = {
 
     create: function () {
+      this.randSeed = 1;
       this.score = 0;
       this.style = { font: '16px Arial', fill: '#FFFFFF', align: 'center' };
 
@@ -59,7 +60,7 @@
       this.pinpoints.setAll('anchor', {x:-12.9 , y:  0});
       this.pums.setAll('scale',    {x:0.3, y:0.3});
       this.pums.setAll('anchor',   {x: -8, y:  0});
-      //this.pums.setAll('visible',  false);
+      this.pums.setAll('visible',  false);
 
 
       for(var i=0; i<numPins; i++){
@@ -95,6 +96,9 @@
       this.game.world.bringToTop(this.earth);
 
       this.textSprite = this.game.add.text(10, 10, 'SCORE: 0', this.style);
+
+
+      setInterval(function(){ this.maybeGenMeteor() }.bind(this), 1000);
     },
 
     genPinPointAngle : function(){
@@ -207,10 +211,64 @@
 
       this.cannon.angle = 90 + angle;
     },
-
     steerCoffee: function() {
     },
+    maybeGenMeteor: function(){
+        // Run every second, generate meteor prob% of the times
+        var prob = 80;
+        if(this.random(1,100) < prob){
+            console.log('Generating meteor');
+            this.meteors = this.meteors || this.game.add.group();
 
+
+            var from = {};var to   = {};
+            var rand = this.random(0,3);
+            if(rand<1){
+                from.x = -50;
+                from.y = this.random(-2*this.game.height, this.game.height);
+                to.x   = this.game.width+50;
+                to.y   = this.random(-2*this.game.height, this.game.height);
+            } else if(rand<2){
+                from.x = this.game.width+50;
+                from.y = this.random(-2*this.game.height, this.game.height);
+                to.x   = -50;
+                to.y   = this.random(-2*this.game.height, this.game.height);
+            } else if(rand<3){
+                from.x = this.random(-2*this.game.width, this.game.width);
+                from.y = -50;
+                to.x   = this.random(-2*this.game.width, this.game.width);
+                to.y   = this.game.height+50;
+            } else {
+                from.x = this.random(-2*this.game.width, this.game.width);
+                from.y = this.game.height+50;
+                to.x   = this.random(-2*this.game.width, this.game.width);
+                to.y   = -50;
+            }
+
+            var meteor = this.add.sprite(from.x, from.y, 'meteor');
+            this.meteors.add(meteor);
+            meteor.outOfBoundsKill = true;
+            meteor.scale.set(0.1, 0.1);
+            var tween  = this.game.add.tween(meteor).to(to,10000);
+            tween.start();
+
+
+            meteor.anchor.set();
+            this.game.physics.enable(meteor, Phaser.Physics.ARCADE);
+        } else { console.log('Not generating meteor'); }
+    },
+    random: function(min, max) {
+        this.randSeed = this.randSeed+1;
+        var seed = this.randSeed;
+
+        var random = function() {
+            var x = Math.sin(seed++) * 10000;
+            return x - Math.floor(x);
+        }
+        var rand = Math.floor(random() * (max - min + 1)) + min;
+        //console.log('Randomly generated ',rand);
+        return rand;
+    },
     checkCoffeeCollision: function() {
       if (!this.coffeeCup || !this.coffeeCup.exists) {
         return;
