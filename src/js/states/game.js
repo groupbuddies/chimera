@@ -38,18 +38,18 @@
       this.cannon.r = (this.cannon.width * 0.5);
 
       this.pinpoints = this.game.add.group();
-      this.pums   = this.game.add.group();
+      this.pums      = this.game.add.group();
 
       var numPins = 100;
 
       for(var i=0; i<numPins; i++){
         var pinpoint   = this.pinpoints.create(0, 0, 'pinpoint');
+        var pum        = this.pums.create(0, 0, 'pum');
         pinpoint.angle = this.genPinPointAngle();
-        var pum = this.pums.create(0, 0, 'pum');
+        pum.angle      = pinpoint.angle;
       }
 
-      this.pums.setAll('scale',    {x:0.3, y:0.3});
-      this.pums.setAll('anchor',   {x: -8, y:  0});
+      this.pums.setAll('scale',    {x:0.2, y:0.2});
       this.pums.setAll('visible',  false);
 
       this.earth.addChild(this.pinpoints);
@@ -58,6 +58,11 @@
       this.pinpoints.forEach(function(pin) {
         pin.x = this.earth.width * 0.8 * Math.cos(pin.angle * Math.PI / 180);
         pin.y = this.earth.width * 0.8 * Math.sin(pin.angle * Math.PI / 180);
+      }, this)
+
+      this.pums.forEach(function(pum) {
+        pum.x = this.earth.width * 0.8 * Math.cos(pum.angle * Math.PI / 180);
+        pum.y = this.earth.width * 0.8 * Math.sin(pum.angle * Math.PI / 180);
       }, this)
 
       this.keyShoot = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
@@ -126,6 +131,7 @@
       this.coffee.checkWorldBounds = true;
       this.coffee.anchor.set(0.5, 0.5);
       this.coffee.scale.set(0.2, 0.2);
+      this.coffee.hit = false;
       this.game.physics.arcade.enable(this.coffee);
 
       this.coffeeFlame = this.add.sprite(0, 0, 'flames');
@@ -267,23 +273,46 @@
       }
 
       if (this.circlesOverlap(this.earth, this.coffee)) {
+        // Already handled the hit, skip
+        if(this.coffee.hit){ return; }
+
+        // Get pin with minimum center distance to coffee
+        var minDist = null;
+        var minDistIndex = -1;
         this.pinpoints.forEach(function(pin) {
           if (this.circlesOverlap(this.coffee, pin)) {
-            console.log('pin hit');
+            var i = this.pinpoints.getIndex(pin);
+            var dist = this.centerDists(this.coffee, pin);
+            if(!minDist || dist < minDist){
+                minDist = dist;
+                minDistIndex = i;
+            }
           }
         }, this);
 
-        if (!this.coffee) { return; }
-        this.score += 1;
+        // Earth hit
+        if(minDistIndex === -1){
+          this.playFx(this.sounds.actions.earth_hit);
+        }
+        // Pin hit
+        else {
+          this.pums.getChildAt(minDistIndex).visible = true;
+          this.coffee.hit = true;
+          this.playFx(this.sounds.actions.hit);
+          this.score += 1;
+        }
+
         this.coffee.kill();
         this.line.visible = true;
-        this.playFx(this.sounds.actions.earth_hit);
       }
     },
 
     circlesOverlap: function(circle1,circle2) {
       var distance = Math.sqrt(Math.pow(circle1.world.x - circle2.world.x, 2) + Math.pow(circle2.world.y - circle2.world.y, 2));
       return (distance < Math.max(circle1.r || circle1.width, circle2.r || circle2.width));
+    },
+    centerDists: function(circle1, circle2){
+      return Math.sqrt(Math.pow(circle1.world.x - circle2.world.x, 2) + Math.pow(circle2.world.y - circle2.world.y, 2));
     }
   };
 
