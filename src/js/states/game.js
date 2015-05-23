@@ -25,8 +25,6 @@
       this.earth.anchor.setTo(0.5, 0.5);
       this.earth.r = (this.earth.width * 0.5) * 0.95;
 
-      this.game.physics.enable(this.earth, Phaser.Physics.ARCADE);
-
       this.mocha = this.add.sprite(0, this.game.height * 0.5, 'mocha');
       this.mocha.anchor.setTo(0.5, 0.5);
       this.mocha.scale.set(0.2, 0.2);
@@ -37,36 +35,30 @@
       this.cannon.position.y = this.game.height * 0.5;
       this.cannon.scale.set(0.25, 0.25);
       this.cannon.anchor.set(0.5, 1.2);
+      this.cannon.r = (this.cannon.width * 0.5);
 
-      this.pinpointsArr = [];
-      this.pumsArr   = [];
       this.pinpoints = this.game.add.group();
       this.pums   = this.game.add.group();
 
       var numPins = 100;
 
       for(var i=0; i<numPins; i++){
-        var pinpoint   = this.add.sprite(0, 0, 'pinpoint');
-        var pum     = this.add.sprite(0, 0, 'pum');
+        var pinpoint   = this.pinpoints.create(0, 0, 'pinpoint');
         pinpoint.angle = this.genPinPointAngle();
-        pum.angle   = 180-40*i;
-        this.pinpointsArr.push(pinpoint);
-        this.pinpoints.add(pinpoint);
-        this.pumsArr.push(pum);
-        this.pums.add(pum);
+        var pum = this.pums.create(0, 0, 'pum');
       }
 
-      this.pinpoints.setAll('scale',  {x:1, y:1});
-      this.pinpoints.setAll('anchor', {x:-12.9 , y:  0});
       this.pums.setAll('scale',    {x:0.3, y:0.3});
       this.pums.setAll('anchor',   {x: -8, y:  0});
       this.pums.setAll('visible',  false);
 
+      this.earth.addChild(this.pinpoints);
+      this.earth.addChild(this.pums);
 
-      for(var i=0; i<numPins; i++){
-        this.earth.addChild(this.pinpointsArr[i]);
-        this.earth.addChild(this.pumsArr[i]);
-      }
+      this.pinpoints.forEach(function(pin) {
+        pin.x = this.earth.width * 0.8 * Math.cos(pin.angle * Math.PI / 180);
+        pin.y = this.earth.width * 0.8 * Math.sin(pin.angle * Math.PI / 180);
+      }, this)
 
       this.keyShoot = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
       this.keyShoot.onDown.add(this.fire, this);
@@ -106,7 +98,6 @@
         return Math.floor(Math.random()*(360-1)+1);
     },
     update: function () {
-
       if (!!this.coffeeCup && this.coffeeCup.exists) {
         this.steerCoffee();
       } else {
@@ -152,7 +143,7 @@
       var tween = this.game.add.tween(this.coffee).to({
         x: [this.cannonTip().x, this.game.width * 0.66, this.target.x, this.target.x],
         y: [this.cannonTip().y, this.target.y, this.target.y, this.target.y],
-      }, 1500,Phaser.Linear , true).interpolation(function(v, k){
+      }, 3000,Phaser.Linear , true).interpolation(function(v, k){
         return Phaser.Math.bezierInterpolation(v, k);
       });
 
@@ -271,34 +262,27 @@
         return;
       }
 
-      this.game.physics.arcade.overlap(this.coffeeCup, this.earth, function() {
+      
+      if (this.circlesOverlap(this.earth, this.coffeeCup)) {
+        this.pinpoints.forEach(function(pin) {
+          if (this.circlesOverlap(this.coffeeCup, pin)) {
+            console.log('pin hit');
+          }
+        }, this);
+
         if (!this.coffee) { return; }
-
-        if (!this.rectangleOverCircle(this.earth, this.coffee)) { return; }
-
         this.score += 1;
         this.coffee.remove(this.coffeeCup);
         this.coffeeCup.kill();
         this.coffeeFlame.kill();
         this.line.visible = true;
         this.playFx(this.sounds.actions.earth_hit);
-      }.bind(this));
+      }
     },
 
-    rectangleOverCircle: function(circle,rect) {
-      var distX = Math.abs(circle.x - rect.x-rect.width * 0.5);
-      var distY = Math.abs(circle.y - rect.y-rect.height * 0.5);
-
-      if (distX > (rect.width * 0.5 + circle.r)) { return false; }
-      if (distY > (rect.height * 0.5 + circle.r)) { return false; }
-
-      if (distX <= (rect.width * 0.5)) { return true; }
-      if (distY <= (rect.height * 0.5)) { return true; }
-
-      var dx=distX-rect.width * 0.5;
-      var dy=distY-rect.height * 0.5;
-
-      return (dx*dx+dy*dy<=(circle.r*circle.r));
+    circlesOverlap: function(circle1,circle2) {
+      var distance = Math.sqrt(Math.pow(circle1.world.x - circle2.world.x, 2) + Math.pow(circle2.world.y - circle2.world.y, 2));
+      return (distance < Math.max(circle1.r || circle1.width, circle2.r || circle2.width));
     }
   };
 
