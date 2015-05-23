@@ -46,6 +46,7 @@
       this.earth.angle = (this.game.time.now) * 0.0005 * (180 / Math.PI);
       this.trajectoryLine();
       this.movePlayer();
+      this.updatePlayerAngle();
     },
 
     fire: function() {
@@ -60,7 +61,7 @@
       this.coffee.checkWorldBounds = true;
       this.coffee.outOfBoundsKill = true;
       this.game.physics.enable(this.coffee, Phaser.Physics.ARCADE);
-      this.game.physics.arcade.moveToXY(this.coffee, this.target.x, this.target.y, 300, 500);
+      this.player.angle = this.game.physics.arcade.moveToXY(this.coffee, this.target.x, this.target.y, 300, 500);
     },
 
     trajectoryLine: function() {
@@ -74,19 +75,29 @@
     },
 
     movePlayer: function() {
-      var margin = 50;
+      var velocity = 6;
+      var margin = 150;
 
       if (this.cursors.down.isDown) {
-        this.player.angle += 1;
         if (this.target.y < this.earth.y + this.earth.height / 2 + margin)
-          this.target.y += 2;
+          this.target.y += velocity;
       }
 
       if (this.cursors.up.isDown) {
-        this.player.angle -= 1;
         if (this.target.y > this.earth.y - this.earth.height / 2 - margin)
-          this.target.y -= 2;
+          this.target.y -= velocity;
       }
+    },
+
+    updatePlayerAngle: function() {
+      var angle = Math.atan2(this.target.y - this.player.y, this.target.x - this.player.x );
+      angle = angle * (180/Math.PI);
+
+      if (angle < 0) {
+        angle = 360 - (-angle);
+      }
+
+      this.player.angle = angle;
     }
   };
 
