@@ -34,6 +34,7 @@
       this.loadSounds(['fire',
         'hit',
         'earth_hit',
+        'meteor_hit',
         'miss',
         'soundtrack'
       ]);

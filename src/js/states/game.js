@@ -84,10 +84,11 @@
       this.sounds = {
         soundtrack: this.game.add.audio('soundtrack', 0.1, true),
         actions: {
-            fire      : this.game.add.audio('fire'),
-            hit       : this.game.add.audio('hit'),
-            earth_hit : this.game.add.audio('earth_hit'),
-            miss      : this.game.add.audio('miss')
+            fire       : this.game.add.audio('fire'),
+            hit        : this.game.add.audio('hit'),
+            earth_hit  : this.game.add.audio('earth_hit'),
+            meteor_hit : this.game.add.audio('meteor_hit'),
+            miss       : this.game.add.audio('miss')
         }
       };
       this.sounds.soundtrack.play();
@@ -217,11 +218,8 @@
         // Run every second, generate meteor prob% of the times
         var prob = 80;
         if(this.random(1,100) < prob){
-            console.log('Generating meteor');
             this.meteors = this.meteors || this.game.add.group();
-
-
-            var from = {};var to   = {};
+            var from = {}; var to   = {};
             var rand = this.random(0,3);
             if(rand<1){
                 from.x = -50;
@@ -255,7 +253,7 @@
 
             meteor.anchor.set();
             this.game.physics.enable(meteor, Phaser.Physics.ARCADE);
-        } else { console.log('Not generating meteor'); }
+        }
     },
     random: function(min, max) {
         this.randSeed = this.randSeed+1;
@@ -266,7 +264,6 @@
             return x - Math.floor(x);
         }
         var rand = Math.floor(random() * (max - min + 1)) + min;
-        //console.log('Randomly generated ',rand);
         return rand;
     },
     checkCoffeeCollision: function() {
