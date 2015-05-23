@@ -14,6 +14,7 @@
       this.bg.scale.set(0.5, 0.5);
 
       this.cursors = this.game.input.keyboard.createCursorKeys();
+      this.game.input.mouse.mouseWheelCallback = this.mouseMovePlayer.bind(this);
 
       this.target = { x: this.game.width * 1.1, y: this.game.height / 2 };
 
@@ -192,6 +193,21 @@
         if (this.target.y > this.earth.y - this.earth.height / 2 - margin)
           this.target.y -= velocity;
       }
+
+    },
+
+    mouseMovePlayer: function(event){
+      var velocity = 20;
+      var margin = 60;
+
+      if(this.game.input.mouse.wheelDelta === Phaser.Mouse.WHEEL_UP){
+        if (this.target.y < this.earth.y + this.earth.height / 2 + margin)
+          this.target.y -= velocity;
+      } else {
+        if (this.target.y > this.earth.y - this.earth.height / 2 - margin)
+          this.target.y += velocity;
+      }
+
     },
 
     steerCannon: function() {
