@@ -22,6 +22,7 @@
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
 
       this.load.image('circle', 'assets/circle.png');
+      this.load.image('java', 'assets/java.png');
     },
 
     create: function () {
