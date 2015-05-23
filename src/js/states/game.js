@@ -9,20 +9,6 @@
   Game.prototype = {
 
     create: function () {
-      // this.bg = this.add.bitmapData(this.game.width, this.game.height);
-      // var gradient = this.bg.ctx.createRadialGradient(
-      //     this.game.width* 0.5,
-      //     this.game.height * 0.5,
-      //     200,
-      //     this.game.width*0.5,
-      //     this.game.height*0.5,
-      //     400);
-      // gradient.addColorStop(0, "#3B3352");
-      // gradient.addColorStop(1, "#241C3D");
-      // this.bg.ctx.fillStyle = gradient;
-      // this.bg.ctx.fillRect(0, 0, this.game.width, this.game.height);
-      // this.game.add.sprite(0, 0, this.bg);
-
       this.bg = this.add.sprite(0, 0, 'bg');
       this.bg.scale.set(0.5, 0.5);
 
