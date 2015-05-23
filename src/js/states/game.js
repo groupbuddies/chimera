@@ -98,7 +98,7 @@
         return Math.floor(Math.random()*(360-1)+1);
     },
     update: function () {
-      if (!!this.coffeeCup && this.coffeeCup.exists) {
+      if (!!this.coffee && this.coffee.exists) {
         this.steerCoffee();
       } else {
         this.steerCannon();
@@ -117,34 +117,34 @@
 
     fire: function() {
       // only one coffee at a time
-      if (!!this.coffeeCup && this.coffeeCup.exists) {
+      if (!!this.coffee && this.coffee.exists) {
         return;
       }
 
-      this.coffee = this.add.group();
-      this.coffee.position.x = this.cannonTip().x;
-      this.coffee.position.y = this.cannonTip().y;
+      this.coffee = this.add.sprite(this.cannonTip().x, this.cannonTip().y, 'coffee');
 
-      this.coffeeCup = this.coffee.create(0, 0, 'coffee');
-      this.coffeeCup.checkWorldBounds = true;
-      this.coffeeCup.anchor.set(0.5, 1);
-      this.coffeeCup.scale.set(0.2, 0.2);
-      this.game.physics.arcade.enable(this.coffeeCup);
+      this.coffee.checkWorldBounds = true;
+      this.coffee.anchor.set(0.5, 0.5);
+      this.coffee.scale.set(0.2, 0.2);
+      this.game.physics.arcade.enable(this.coffee);
 
-
-      this.coffeeFlame = this.coffee.create(0, 0, 'flames');
-      this.coffeeFlame.anchor.set(0.5, 0.5);
+      this.coffeeFlame = this.add.sprite(0, 0, 'flames');
+      this.coffee.addChild(this.coffeeFlame);
+      this.coffeeFlame.anchor.set(1.3, 0.5);
       this.coffeeFlame.animations.add('walk');
       this.coffeeFlame.animations.play('walk', 10, true);
-      this.coffeeFlame.scale.set(0.15, 0.15);
-
-      this.game.physics.arcade.enable(this.coffeeCup);
-
       this.coffee.outOfBoundsKill = true;
 
-      this.coffeeCup.body.velocity.x = 500;
+      this.coffee.angle = this.cannon.angle - 90;
+      this.updateCoffeeSpeed();
       this.playFx(this.sounds.actions.fire);
       this.line.visible = false;
+    },
+
+    updateCoffeeSpeed: function() {
+      var linearVelocity = 200;
+      this.coffee.body.velocity.x = linearVelocity * Math.cos(this.coffee.angle * Math.PI / 180);
+      this.coffee.body.velocity.y = linearVelocity * Math.sin(this.coffee.angle * Math.PI / 180);
     },
 
     playFx: function(sound){
@@ -196,7 +196,19 @@
       this.cannon.angle = 90 + angle;
     },
     steerCoffee: function() {
+      var angularVelocity = 1;
+
+      if (this.cursors.down.isDown) {
+        this.coffee.angle += angularVelocity;
+        this.updateCoffeeSpeed();
+      }
+
+      if (this.cursors.up.isDown) {
+        this.coffee.angle -= angularVelocity;
+        this.updateCoffeeSpeed();
+      }
     },
+
     maybeGenMeteor: function(){
         // Run every second, generate meteor prob% of the times
         var prob = 80;
@@ -250,22 +262,20 @@
         return rand;
     },
     checkCoffeeCollision: function() {
-      if (!this.coffeeCup || !this.coffeeCup.exists) {
+      if (!this.coffee || !this.coffee.exists) {
         return;
       }
 
-      if (this.circlesOverlap(this.earth, this.coffeeCup)) {
+      if (this.circlesOverlap(this.earth, this.coffee)) {
         this.pinpoints.forEach(function(pin) {
-          if (this.circlesOverlap(this.coffeeCup, pin)) {
+          if (this.circlesOverlap(this.coffee, pin)) {
             console.log('pin hit');
           }
         }, this);
 
         if (!this.coffee) { return; }
         this.score += 1;
-        this.coffee.remove(this.coffeeCup);
-        this.coffeeCup.kill();
-        this.coffeeFlame.kill();
+        this.coffee.kill();
         this.line.visible = true;
         this.playFx(this.sounds.actions.earth_hit);
       }
