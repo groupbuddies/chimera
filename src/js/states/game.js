@@ -1,7 +1,10 @@
-var Player = require('../entities/player');
+var Earth = require('../entities/earth');
+var Line = require('../entities/line');
+var Earth = require('../entities/earth');
+var Cannon = require('../entities/cannon');
+var PlanetMocha = require('../entities/planet_mocha');
 
 var Game = function () {
-  this.testentity = null;
 };
 
 module.exports = Game;
@@ -9,35 +12,24 @@ module.exports = Game;
 Game.prototype = {
 
   create: function () {
-    var x = (this.game.width / 2) - 100;
-    var y = (this.game.height / 2) - 50;
+    var width = this.game.width;
+    var height = this .game.height;
 
-    this.testentity = new Player(this.game, x, y);
-    this.testentity.anchor.setTo(0.5, 0.5);
+    this.target = { x: width * 0.5, y: 0 - height * 0.1 };
 
-    this.input.onDown.add(this.onInputDown, this);
+    this.background = this.add.sprite(0, 0, 'background');
+    this.background.scale.set(0.5, 0.5);
+
+    this.earth = new Earth(this.game, width / 2, 0 - height * 0.25);
+    this.mochaPlanet = new PlanetMocha(this.game, width * 0.5, height);
+    this.cannon = new Cannon(this.game, width * 0.5, height - this.mochaPlanet.height * 0.45);
+
+    this.line = new Line(this, this.game, 0, 0, this.target, this.cannon);
+
+    this.cursors = this.game.input.keyboard.createCursorKeys();
   },
 
   update: function () {
-    var x, y, cx, cy, dx, dy, angle, scale;
 
-    x = this.input.position.x;
-    y = this.input.position.y;
-    cx = this.world.centerX;
-    cy = this.world.centerY;
-
-    angle = Math.atan2(y - cy, x - cx) * (180 / Math.PI);
-    this.testentity.angle = angle;
-
-    dx = x - cx;
-    dy = y - cy;
-    scale = Math.sqrt(dx * dx + dy * dy) / 100;
-
-    this.testentity.scale.x = scale * 0.6;
-    this.testentity.scale.y = scale * 0.6;
-  },
-
-  onInputDown: function () {
-    this.game.state.start('Menu');
   }
 };
