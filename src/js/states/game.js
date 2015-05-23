@@ -42,7 +42,9 @@
       this.pinpoints = this.game.add.group();
       this.pums   = this.game.add.group();
 
-      for(var i=0; i<5; i++){
+      var numPins = 100;
+
+      for(var i=0; i<numPins; i++){
         var pinpoint   = this.add.sprite(0, 0, 'pinpoint');
         var pum     = this.add.sprite(0, 0, 'pum');
         pinpoint.angle = this.genPinPointAngle();
@@ -57,10 +59,10 @@
       this.pinpoints.setAll('anchor', {x:-12.9 , y:  0});
       this.pums.setAll('scale',    {x:0.3, y:0.3});
       this.pums.setAll('anchor',   {x: -8, y:  0});
-      this.pums.setAll('visible',  false);
+      //this.pums.setAll('visible',  false);
 
 
-      for(var i=0; i<5; i++){
+      for(var i=0; i<numPins; i++){
         this.earth.addChild(this.pinpointsArr[i]);
         this.earth.addChild(this.pumsArr[i]);
       }
@@ -96,7 +98,7 @@
     },
 
     genPinPointAngle : function(){
-        return Math.floor(Math.random()*(10-2)+2)*20;
+        return Math.floor(Math.random()*(360-1)+1);
     },
     update: function () {
       this.earth.angle = (this.game.time.now) * 0.00008 * (180 / Math.PI);
