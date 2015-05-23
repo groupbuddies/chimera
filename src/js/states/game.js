@@ -122,8 +122,8 @@
       }
 
       this.coffee = this.add.group();
-      this.coffee.position.x = this.cannonTip().x
-      this.coffee.position.y = this.cannonTip().y
+      this.coffee.position.x = this.cannonTip().x;
+      this.coffee.position.y = this.cannonTip().y;
 
       this.coffeeCup = this.coffee.create(0, 0, 'coffee');
       this.coffeeCup.checkWorldBounds = true;
@@ -262,7 +262,7 @@
         return;
       }
 
-      
+
       if (this.circlesOverlap(this.earth, this.coffeeCup)) {
         this.pinpoints.forEach(function(pin) {
           if (this.circlesOverlap(this.coffeeCup, pin)) {
