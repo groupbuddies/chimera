@@ -18,6 +18,7 @@
 
       this.earth = this.add.sprite(x, y, 'circle');
       this.earth.anchor.setTo(0.5, 0.5);
+      this.game.physics.enable(this.earth, Phaser.Physics.ARCADE);
 
       this.player = this.game.add.group();
       this.player.position.x = 0;
@@ -100,9 +101,7 @@
         this.game.width * 0.66, this.target.y, //controll 1
         this.target.x, this.target.y, // controll 2
         this.target.x, this.target.y
-
       );
-      // this.lineProperties.ctx.lineTo(this.target.x, this.target.y);
       this.lineProperties.ctx.stroke();
       this.lineProperties.ctx.closePath();
       this.lineProperties.render();
@@ -139,7 +138,9 @@
         return;
       }
 
-      // Phaser.Physics.Arcade.collide(this.coffee, this.earth);
+      this.game.physics.arcade.collide(this.coffee, this.earth, undefined, function() {
+        this.coffee.kill();
+      }, this);
     }
   };
 
