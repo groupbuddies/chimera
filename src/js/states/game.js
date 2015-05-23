@@ -9,6 +9,9 @@
   Game.prototype = {
 
     create: function () {
+      this.score = 0;
+      this.style = { font: '16px Arial', fill: '#FFFFFF', align: 'center' };
+
       this.bg = this.add.sprite(0, 0, 'bg');
       this.bg.scale.set(0.5, 0.5);
 
@@ -88,6 +91,8 @@
 
       this.game.world.bringToTop(this.mocha);
       this.game.world.bringToTop(this.earth);
+
+      this.textSprite = this.game.add.text(10, 10, 'SCORE: 0', this.style);
     },
 
     update: function () {
@@ -96,6 +101,11 @@
       this.movePlayer();
       this.updatePlayerAngle();
       this.checkCoffeeCollision();
+      this.drawScore();
+    },
+
+    drawScore: function() {
+      this.textSprite.text = 'SCORE: ' + this.score;
     },
 
     fire: function() {
@@ -115,7 +125,7 @@
       var tween = this.game.add.tween(this.coffee).to({
         x: [this.cannonTip().x, this.game.width * 0.66, this.target.x, this.target.x],
         y: [this.cannonTip().y, this.target.y, this.target.y, this.target.y],
-      }, 4000,Phaser.Linear , true).interpolation(function(v, k){
+      }, 1500,Phaser.Linear , true).interpolation(function(v, k){
         return Phaser.Math.bezierInterpolation(v, k);
       });
 
@@ -186,6 +196,7 @@
 
         if (!this.rectangleOverCircle(this.earth, this.coffee)) { return; }
 
+        this.score += 1;
         this.coffee.kill();
         this.line.visible = true;
         this.playFx(this.sounds.actions.earth_hit);
@@ -193,17 +204,17 @@
     },
 
     rectangleOverCircle: function(circle,rect) {
-      var distX = Math.abs(circle.x - rect.x-rect.width/2);
-      var distY = Math.abs(circle.y - rect.y-rect.height/2);
+      var distX = Math.abs(circle.x - rect.x-rect.width * 0.5);
+      var distY = Math.abs(circle.y - rect.y-rect.height * 0.5);
 
-      if (distX > (rect.width/2 + circle.r)) { return false; }
-      if (distY > (rect.height/2 + circle.r)) { return false; }
+      if (distX > (rect.width * 0.5 + circle.r)) { return false; }
+      if (distY > (rect.height * 0.5 + circle.r)) { return false; }
 
-      if (distX <= (rect.width/2)) { return true; }
-      if (distY <= (rect.height/2)) { return true; }
+      if (distX <= (rect.width * 0.5)) { return true; }
+      if (distY <= (rect.height * 0.5)) { return true; }
 
-      var dx=distX-rect.width/2;
-      var dy=distY-rect.height/2;
+      var dx=distX-rect.width * 0.5;
+      var dy=distY-rect.height * 0.5;
 
       return (dx*dx+dy*dy<=(circle.r*circle.r));
     }
