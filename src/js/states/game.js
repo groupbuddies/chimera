@@ -132,6 +132,7 @@
       });
 
       this.playFx(this.sounds.actions.fire);
+      this.line.visible = false;
     },
 
     playFx: function(sound){
@@ -194,6 +195,7 @@
 
       this.game.physics.arcade.collide(this.coffee, this.earth, undefined, function() {
         this.coffee.kill();
+        this.line.visible = true;
         this.playFx(this.sounds.actions.earth_hit);
       }, this);
     }
