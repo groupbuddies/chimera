@@ -101,10 +101,16 @@
         return Math.floor(Math.random()*(360-1)+1);
     },
     update: function () {
+
+      if (!!this.coffeeCup && this.coffeeCup.exists) {
+        this.steerCoffee();
+      } else {
+        this.steerCannon();
+      }
+
       this.earth.angle = (this.game.time.now) * 0.00008 * (180 / Math.PI);
       this.trajectoryLine();
       this.movePlayer();
-      this.updatePlayerAngle();
       this.checkCoffeeCollision();
       this.drawScore();
     },
@@ -191,7 +197,7 @@
       }
     },
 
-    updatePlayerAngle: function() {
+    steerCannon: function() {
       var angle = Math.atan2(this.target.y - this.cannon.y, this.target.x - this.cannon.x );
       angle = angle * (180/Math.PI);
 
@@ -200,6 +206,9 @@
       }
 
       this.cannon.angle = 90 + angle;
+    },
+
+    steerCoffee: function() {
     },
 
     checkCoffeeCollision: function() {
