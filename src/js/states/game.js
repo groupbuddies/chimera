@@ -80,13 +80,28 @@
       this.coffee.outOfBoundsKill = true;
       this.game.physics.enable(this.coffee, Phaser.Physics.ARCADE);
       this.player.angle = this.game.physics.arcade.moveToXY(this.coffee, this.target.x, this.target.y, 300, 500);
+
+      var tween = this.game.add.tween(this.coffee).to({
+        x: [this.canon.world.x, this.game.width * 0.66, this.target.x, this.target.x],
+        y: [this.canon.world.y, this.target.y, this.target.y, this.target.y],
+      }, 4000,Phaser.Linear , true).interpolation(function(v, k){
+        return Phaser.Math.bezierInterpolation(v, k);
+      });
     },
 
     trajectoryLine: function() {
+      var maxHeight = this.target.y - this.earth.y / 2;
+
       this.lineProperties.clear();
       this.lineProperties.ctx.beginPath();
       this.lineProperties.ctx.moveTo(this.canon.world.x, this.canon.world.y);
-      this.lineProperties.ctx.lineTo(this.target.x, this.target.y);
+      this.lineProperties.ctx.bezierCurveTo(
+        this.game.width * 0.66, this.target.y, //controll 1
+        this.target.x, this.target.y, // controll 2
+        this.target.x, this.target.y
+
+      );
+      // this.lineProperties.ctx.lineTo(this.target.x, this.target.y);
       this.lineProperties.ctx.stroke();
       this.lineProperties.ctx.closePath();
       this.lineProperties.render();
