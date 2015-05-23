@@ -14,7 +14,7 @@
 
       this.cursors = this.game.input.keyboard.createCursorKeys();
 
-      this.target = { x: this.game.width, y: this.game.height / 2 };
+      this.target = { x: this.game.width * 1.1, y: this.game.height / 2 };
 
       this.earth = this.add.sprite(x, y, 'circle');
       this.earth.anchor.setTo(0.5, 0.5);
@@ -52,7 +52,8 @@
 
       this.lineProperties = this.add.bitmapData(this.game.width, this.game.height);
       this.lineProperties.ctx.beginPath();
-      this.lineProperties.ctx.lineWidth = '4';
+      this.lineProperties.ctx.lineWidth = '1';
+      this.lineProperties.ctx.setLineDash([2, 4]);
       this.lineProperties.ctx.strokeStyle = 'white';
       this.lineProperties.ctx.stroke();
 
@@ -65,6 +66,7 @@
       this.trajectoryLine();
       this.movePlayer();
       this.updatePlayerAngle();
+      this.checkCoffeeCollision();
     },
 
     fire: function() {
@@ -79,12 +81,11 @@
       this.coffee.checkWorldBounds = true;
       this.coffee.outOfBoundsKill = true;
       this.game.physics.enable(this.coffee, Phaser.Physics.ARCADE);
-      this.player.angle = this.game.physics.arcade.moveToXY(this.coffee, this.target.x, this.target.y, 300, 500);
 
       var tween = this.game.add.tween(this.coffee).to({
         x: [this.canon.world.x, this.game.width * 0.66, this.target.x, this.target.x],
         y: [this.canon.world.y, this.target.y, this.target.y, this.target.y],
-      }, 4000,Phaser.Linear , true).interpolation(function(v, k){
+      }, 2000,Phaser.Linear , true).interpolation(function(v, k){
         return Phaser.Math.bezierInterpolation(v, k);
       });
     },
@@ -109,7 +110,7 @@
 
     movePlayer: function() {
       var velocity = 6;
-      var margin = 150;
+      var margin = 80;
 
       if (this.cursors.down.isDown) {
         if (this.target.y < this.earth.y + this.earth.height / 2 + margin)
@@ -131,6 +132,14 @@
       }
 
       this.player.angle = angle;
+    },
+
+    checkCoffeeCollision: function() {
+      if (!this.coffee || !this.coffee.exists) {
+        return;
+      }
+
+      // Phaser.Physics.Arcade.collide(this.coffee, this.earth);
     }
   };
 
