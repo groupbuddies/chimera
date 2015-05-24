@@ -21,7 +21,7 @@
       this.earth = this.add.sprite(this.game.width * 1.72, this.game.height * 0.5, 'earth');
       this.earth.anchor.setTo(0.5, 0.5);
       this.earth.r = (this.earth.width * 0.5);
-      // this.earth.scale.set(0.3, 0.3);
+      //this.earth.scale.set(0.3, 0.3);
 
       this.mocha = this.add.sprite(0, this.game.height * 0.5, 'mocha');
       this.mocha.anchor.setTo(0.5, 0.5);
@@ -37,7 +37,12 @@
       this.pinpoints = this.game.add.group();
       this.pums      = this.game.add.group();
 
-      var numPins = 3;
+      //this.pinpoints.checkWorldBounds = true;
+      //this.pinpoints.outOfBoundsKill = true;
+      //this.pums.checkWorldBounds = true;
+      //this.pums.outOfBoundsKill = true;
+
+
       this.sounds = {
         soundtrack: this.game.add.audio('soundtrack', 0.05, true),
         actions: {
@@ -51,7 +56,7 @@
         }
       };
 
-      var numPins = 20;
+      var numPins = 3;
       for(var i=0; i<numPins; i++){ this.newPin(); }
 
       this.earth.addChild(this.pinpoints);
@@ -81,7 +86,7 @@
     },
 
     genPinPointAngle : function(){
-        return Math.floor(Math.random()*(90-1)+1);
+        return Math.floor(Math.random()*(180-150)+150);
     },
     update: function () {
       if (!!this.coffee && this.coffee.exists) {
@@ -91,7 +96,7 @@
       }
 
       this.earth.angle = (this.game.time.now) * 0.00008 * (180 / Math.PI);
-      this.checkOutOfBoundsPins();
+      //this.checkOutOfBoundsPins();
       this.trajectoryLine();
       this.movePlayer();
       this.checkCoffeeCollision();
@@ -102,7 +107,8 @@
     checkOutOfBoundsPins: function() {
       this.pinpoints.forEach(function(pin) {
         var pinWorldAngle = pin.angle + this.earth.angle;
-        if (pinWorldAngle > -90 && pinWorldAngle < 0) {
+        console.log(pin.angle);
+        if (pinWorldAngle > 195 && pinWorldAngle < 100) {
           this.renewPin(this.pinpoints.getIndex(pin));
         }
       }, this);
@@ -333,8 +339,10 @@
             junk.loadTexture('pum');
             if (junk.key === "astronaut")
               this.playFx(this.sounds.actions.astronaut_hit);
+              this.score -= 1;
             else
               this.playFx(this.sounds.actions.junk_hit);
+              this.score -= 1;
           }
 
         }, this);
@@ -361,6 +369,7 @@
 
         // Earth hit
         if(minDistIndex === -1){
+          this.score -= 1;
           this.playFx(this.sounds.actions.earth_hit);
         }
         // Pin hit
@@ -368,7 +377,7 @@
           this.pums.getChildAt(minDistIndex).visible = true;
           this.coffee.hit = true;
           this.playFx(this.sounds.actions.hit);
-          this.score += 1;
+          this.score += 5;
           this.game.time.events.add(Phaser.Timer.SECOND,  function(){ this.renewPin(minDistIndex); }.bind(this), this);
         }
 
@@ -378,14 +387,15 @@
     },
     newPin: function(){
         var pin   = this.pinpoints.create(0, 0, 'pinpoint');
-        var pum        = this.pums.create(0, 0, 'pum');
-        pin.angle = this.genPinPointAngle();
+        var pum   = this.pums.create(0, 0, 'pum');
+        pin.angle = this.genPinPointAngle()-this.earth.angle;
         pin.r          = 2;
         pum.angle      = pin.angle;
         pin.scale      = {x: 0.8, y: 0.8};
-        pin.anchor     = {x: 0., y: 0.5};
-        pum.anchor     = {x: 0., y: 0.5};
+        pin.anchor     = {x:   0, y: 0.5};
+        pum.anchor     = {x:   0, y: 0.5};
         pum.visible    = false;
+
 
         this.pinpoints.add(pin);
         this.pums.add(pum);
@@ -396,8 +406,14 @@
         pum.x = this.earth.width * 0.495 * Math.cos(pum.angle * Math.PI / 180);
         pum.y = this.earth.width * 0.495 * Math.sin(pum.angle * Math.PI / 180);
 
+        pin.enableBody = true;
+        pin.checkWorldBounds = true;
+        pin.outOfBoundsKill = true;
+        pin.events.onOutOfBounds.add(function(){
+            this.score -= 1;
+            this.newPin();
+        }, this);
         this.playFx(this.sounds.actions.new_pin);
-
     },
     renewPin: function(index){
         var pinpoint = this.pinpoints.getChildAt(index);
