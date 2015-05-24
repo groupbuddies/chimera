@@ -275,6 +275,8 @@
             // Meteor
             if(prob < 20){
                 junk = this.add.sprite(from.x, from.y, 'meteor');
+                this.coffeeFlame.animations.add('walk');
+                this.coffeeFlame.animations.play('walk', 10, true);
                 junk.r = junk.width * 0.18;
                 this.junks.add(junk);
                 junk.anchor.set(0.5, 0.5);
