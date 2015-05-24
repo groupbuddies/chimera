@@ -26,7 +26,7 @@ $(function() {
     });
   }
 
-  setTimeout(bootGame, 20000);
+  setTimeout(bootGame, 25000);
   $(window).keypress(function(e) {
     if (e.keyCode == 32) {
       bootGame();
