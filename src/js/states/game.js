@@ -353,6 +353,7 @@
 
             junk.r = undefined;
             junk.loadTexture('pum');
+            junk.children.forEach(function(c){ c.kill(); });
             junk.tween = this.add.tween(junk).to({
               alpha: 0,
             }, 1000, Phaser.Easing.Quadratic.InOut);
