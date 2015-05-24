@@ -337,12 +337,13 @@
             this.timer.start();
 
             junk.loadTexture('pum');
-            if (junk.key === "astronaut")
+            if (junk.key === "astronaut"){
               this.playFx(this.sounds.actions.astronaut_hit);
               this.score -= 1;
-            else
+            } else {
               this.playFx(this.sounds.actions.junk_hit);
               this.score -= 1;
+            }
           }
 
         }, this);
