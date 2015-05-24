@@ -376,7 +376,6 @@
         pum.x = this.earth.width * 0.495 * Math.cos(pum.angle * Math.PI / 180);
         pum.y = this.earth.width * 0.495 * Math.sin(pum.angle * Math.PI / 180);
 
-        console.log(this);
         this.playFx(this.sounds.actions.new_pin);
 
     },
