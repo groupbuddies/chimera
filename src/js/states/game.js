@@ -284,6 +284,8 @@
             else if (prob > 25 && prob < 30) {
               junk = this.add.sprite(from.x, from.y, 'ship');
               var flame = this.add.sprite(0, 0, 'shipFlame');
+              flame.animations.add('walk');
+              flame.animations.play('walk', 10, true);
               junk.addChild(flame);
               flame.scale.set(0.8,0.8);
               flame.anchor.set(-0.4, 0.5);
@@ -340,7 +342,6 @@
             else
               junk.body.angularVelocity = 0
 
-
             if (junk.key === "astronaut"){
               this.playFx(this.sounds.actions.astronaut_hit);
               this.score -= 1;
@@ -348,7 +349,6 @@
               this.playFx(this.sounds.actions.junk_hit);
               this.score -= 1;
             }
-
 
             junk.r = undefined;
             junk.loadTexture('pum');
