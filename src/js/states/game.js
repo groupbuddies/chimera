@@ -132,7 +132,7 @@
         return;
       }
 
-      var linearVelocity = 300;
+      var linearVelocity = 200;
 
       this.coffee.body.velocity.x = linearVelocity * Math.cos(this.coffee.angle * Math.PI / 180);
       this.coffee.body.velocity.y = linearVelocity * Math.sin(this.coffee.angle * Math.PI / 180);
@@ -204,7 +204,7 @@
       this.cannon.angle = 90 + angle;
     },
     steerCoffee: function() {
-      var angularVelocity = 0.5;
+      var angularVelocity = 3;
 
       if (this.cursors.down.isDown) {
         this.coffee.angle += angularVelocity;
