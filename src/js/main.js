@@ -18,7 +18,7 @@ $(function() {
     clearTimeout(bootGame);
 
     $('#intro').fadeOut(500, function() {
-      game.state.start('game');
+      game.state.start('boot');
     });
   }
 
