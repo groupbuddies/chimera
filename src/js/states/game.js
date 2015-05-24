@@ -428,6 +428,7 @@
         pin.scale      = {x: 0.8, y: 0.8};
         pin.anchor     = {x:   0.2, y: 0.5};
         pum.anchor     = {x:   0, y: 0.5};
+        pum.scale     = {x:   0.8, y: 0.8};
         pum.visible    = false;
 
 
