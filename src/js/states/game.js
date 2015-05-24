@@ -309,8 +309,10 @@
         this.junks.forEach(function(junk) {
           if (this.circlesOverlap(this.coffee, junk)) {
             this.coffee.kill();
-            junk.parent.remove(junk);
+            // junk.parent.remove(junk);
+            junk.loadTexture('pum');
             if (junk.key === "astronaut")
+
               this.playFx(this.sounds.actions.astronaut_hit);
             else
               this.playFx(this.sounds.actions.junk_hit);
