@@ -6,7 +6,7 @@
 
   Game.prototype = {
     create: function () {
-      this.randSeed = 1;
+      this.randSeed = Date.now();
       this.score = 0;
       this.style = { font: '16px nasalization', fill: '#FFFFFF', align: 'center' };
 
