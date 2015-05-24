@@ -301,6 +301,18 @@
         return;
       }
 
+      if (this.junks) {
+        this.junks.forEach(function(junk) {
+          if (this.circlesOverlap(this.coffee, junk)) {
+            this.coffee.kill();
+            junk.kill();
+            this.playFx(this.sounds.actions.hit);
+          }
+
+        }, this);
+      }
+
+
       if (this.circlesOverlap(this.earth, this.coffee)) {
         // Already handled the hit, skip
         if(this.coffee.hit){ return; }
