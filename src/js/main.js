@@ -13,7 +13,12 @@ $(function() {
   /* yo phaser:state new-state-files-put-here */
 
 
+  var started = false;
   var bootGame = function() {
+    if (started) {
+      return;
+    }
+    started = true;
     $(window).unbind('keypress');
 
     $('#intro').fadeOut(500, function() {
