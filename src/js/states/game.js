@@ -8,7 +8,7 @@
     create: function () {
       this.randSeed = 1;
       this.score = 0;
-      this.style = { font: '16px Arial', fill: '#FFFFFF', align: 'center' };
+      this.style = { font: '16px nasalization', fill: '#FFFFFF', align: 'center' };
 
       this.bg = this.add.sprite(0, 0, 'bg');
       this.bg.scale.set(0.5, 0.5);
@@ -79,7 +79,8 @@
       this.game.world.bringToTop(this.mocha);
       this.game.world.bringToTop(this.earth);
 
-      this.textSprite = this.game.add.text(20, 50, 'SCORE: 0', this.style);
+      this.textSprite = this.game.add.text(20, 10, 'PLANET MOCHA', this.style);
+      this.textSprite = this.game.add.text(20, 30, 'SCORE: 0', this.style);
 
       this.game.time.events.loop(Phaser.Timer.SECOND,  this.maybeGenJunk, this);
     },
