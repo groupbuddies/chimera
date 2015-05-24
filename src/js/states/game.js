@@ -273,7 +273,11 @@
             var prob = this.random(1,30);
             // Meteor
             if(prob < 25){
-                junk = this.add.sprite(from.x, from.y, 'commet');
+                if (this.random(0, 1) < 1) {
+                  junk = this.add.sprite(from.x, from.y, 'commet');
+                } else {
+                  junk = this.add.sprite(from.x, from.y, 'commet-purple');
+                }
                 junk.animations.add('walk');
                 junk.animations.play('walk', 10, true);
                 junk.r = junk.width * 0.08;
