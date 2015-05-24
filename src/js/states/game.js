@@ -242,7 +242,7 @@
             // Meteor
             if(prob < 8){
                 junk = this.add.sprite(from.x, from.y, 'meteor');
-                junk.r = junk.width * 0.5;
+                junk.r = junk.width * 0.18;
                 this.junks.add(junk);
                 junk.anchor.set(0.5, 0.5);
                 junk.scale.set(0.3, 0.3);
@@ -250,7 +250,7 @@
             // Astronaut
             else {
                 junk = this.add.sprite(from.x, from.y, 'astronaut');
-                junk.r = junk.width * 0.5;
+                junk.r = junk.width * 0.3;
                 this.junks.add(junk);
                 junk.anchor.set(0.5, 0.5);
                 junk.scale.set(0.7, 0.7);
@@ -294,7 +294,7 @@
         this.junks.forEach(function(junk) {
           if (this.circlesOverlap(this.coffee, junk)) {
             this.coffee.kill();
-            junk.kill();
+            junk.parent.remove(junk);
             if (junk.key === "astronaut")
               this.playFx(this.sounds.actions.astronaut_hit);
             else
