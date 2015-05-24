@@ -27,6 +27,7 @@
       this.load.image('meteor'     , 'assets/comet-flame.svg');
       this.load.image('astronaut'  , 'assets/astronaut.svg');
       this.load.image('bg'         , 'assets/background.png');
+      this.load.image('success'    , 'assets/success_360.png');
 
       this.load.spritesheet('flames' , 'assets/flames.png', 62, 36, 3);
 
