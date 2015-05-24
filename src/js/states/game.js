@@ -155,7 +155,7 @@
     },
 
     updateCoffeeSpeed: function() {
-      if (!this.coffee) {
+      if (!this.coffee || !this.coffee.body) {
         return;
       }
 
