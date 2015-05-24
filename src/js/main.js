@@ -15,7 +15,6 @@ $(function() {
 
   var bootGame = function() {
     $(window).unbind('keypress');
-    clearTimeout(bootGame);
 
     $('#intro').fadeOut(500, function() {
       game.state.start('boot');
