@@ -1,4 +1,4 @@
-window.onload = function () {
+$(function() {
   'use strict';
 
   var game
@@ -8,9 +8,24 @@ window.onload = function () {
 
   game.state.add('boot', ns.Boot);
   game.state.add('preloader', ns.Preloader);
-  // game.state.add('menu', ns.Menu);
+  // game.state.add('story', ns.story);
   game.state.add('game', ns.Game);
   /* yo phaser:state new-state-files-put-here */
 
-  game.state.start('boot');
-};
+
+  var bootGame = function() {
+    $(window).unbind('keypress');
+    clearTimeout(bootGame);
+
+    $('#intro').fadeOut(500, function() {
+      game.state.start('game');
+    });
+  }
+
+  setTimeout(bootGame, 20000);
+  $(window).keypress(function(e) {
+    if (e.keyCode == 32) {
+      bootGame();
+    }
+  })
+});

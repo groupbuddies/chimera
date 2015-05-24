@@ -5,6 +5,7 @@
     ""
   ],
   "dependencies": {
-    "phaser-official": "latest"
+    "phaser-official": "latest",
+    "jquery": "~2.1.4"
   }
 }
