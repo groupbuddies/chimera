@@ -22,6 +22,9 @@
       this.earth.anchor.setTo(0.5, 0.5);
       this.earth.r = (this.earth.width * 0.5);
 
+      // Angle between earth center and bottom right corner
+      this.bottomRightAngle = this.game.physics.arcade.angleToXY(this.earth, this.game.width, this.game.height)*180/Math.PI;
+
       this.mocha = this.add.sprite(0, this.game.height * 0.5, 'mocha');
       this.mocha.anchor.setTo(0.5, 0.5);
       this.mocha.angle = 90;
@@ -91,7 +94,7 @@
         var angle = null;
         this.pinAngles = this.pinAngles || {};
         while(angle === null){
-            angle = Math.floor((Math.floor(Math.random()*(17-14)*10+140)-this.earth.angle)/10)*10;
+            angle = Math.floor((Math.floor(this.random(1,4)*5+153)-this.earth.angle)/5)*5;
             if(this.pinAngles[angle]){ angle = null; }
             else { this.pinAngles[angle] = true;     }
         }
