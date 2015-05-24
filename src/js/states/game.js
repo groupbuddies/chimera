@@ -75,7 +75,7 @@
       this.game.world.bringToTop(this.mocha);
       this.game.world.bringToTop(this.earth);
 
-      this.textSprite = this.game.add.text(10, 10, 'SCORE: 0', this.style);
+      this.textSprite = this.game.add.text(20, 50, 'SCORE: 0', this.style);
 
       this.game.time.events.loop(Phaser.Timer.SECOND,  this.maybeGenJunk, this);
     },
