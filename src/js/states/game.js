@@ -291,8 +291,8 @@
               flame.animations.add('walk');
               flame.animations.play('walk', 10, true);
               junk.addChild(flame);
-              flame.scale.set(0.8,0.8);
-              flame.anchor.set(-0.5, 0.5);
+              flame.scale.set(0.3,0.5);
+              flame.anchor.set(-0.45, 0.5);
               junk.r = junk.width * 0.3;
               this.junks.add(junk);
               junk.anchor.set(0.5, 0.5);
