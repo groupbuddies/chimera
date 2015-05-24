@@ -244,7 +244,7 @@
                 junk = this.add.sprite(from.x, from.y, 'meteor');
                 junk.r = junk.width * 0.5;
                 this.junks.add(junk);
-                junk.anchor.set(0, 0.5);
+                junk.anchor.set(0.5, 0.5);
                 junk.scale.set(0.3, 0.3);
             }
             // Astronaut
