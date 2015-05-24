@@ -104,6 +104,7 @@ p#start
   margin-left: -8em;
   font-size: 200%;
   font-weight: bold;
+  line-height: 40px;
   text-align: justify;
   overflow: hidden;
   transform-origin: 50% 100%;
