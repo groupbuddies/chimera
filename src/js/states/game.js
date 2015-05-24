@@ -218,7 +218,6 @@
 
       this.updateCoffeeSpeed();
     },
-
     maybeGenJunk: function(){
         // Run every second, generate junk prob% of the times
         var prob = 80;
