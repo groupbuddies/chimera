@@ -284,6 +284,8 @@
             }
             else if (prob > 17 && prob < 20) {
               junk = this.add.sprite(from.x, from.y, 'ship');
+              var flame = this.add.sprite(0, 0, 'shipFlame');
+              junk.addChild(flame);
               junk.r = junk.width * 0.3;
               this.junks.add(junk);
               junk.anchor.set(0.5, 0.5);
