@@ -336,7 +336,6 @@
             }, this);
             this.timer.start();
 
-            junk.loadTexture('pum');
             if (junk.key === "astronaut"){
               this.playFx(this.sounds.actions.astronaut_hit);
               this.score -= 1;
@@ -344,6 +343,8 @@
               this.playFx(this.sounds.actions.junk_hit);
               this.score -= 1;
             }
+
+            junk.loadTexture('pum');
           }
 
         }, this);
@@ -388,7 +389,7 @@
     },
     newPin: function(){
         var pin   = this.pinpoints.create(0, 0, 'pinpoint');
-        var pum   = this.pums.create(0, 0, 'pum');
+        var pum   = this.pums.create(0, 0, 'smile');
         pin.angle = this.genPinPointAngle()-this.earth.angle;
         pin.r          = 2;
         pum.angle      = pin.angle;
