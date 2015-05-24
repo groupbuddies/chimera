@@ -24,7 +24,6 @@
       this.load.image('cannon'     , 'assets/cannon.png');
       this.load.image('pinpoint'   , 'assets/location.png');
       this.load.image('pum'        , 'assets/pum.svg');
-      this.load.image('meteor'     , 'assets/comet-flame.png');
       this.load.image('astronaut'  , 'assets/astronaut.svg');
       this.load.image('bg'         , 'assets/background.png');
       this.load.image('smile'      , 'assets/success.png');
@@ -32,7 +31,7 @@
       this.load.image('shipFlame'  , 'assets/flame.svg');
 
       this.load.spritesheet('flames' , 'assets/flames.png', 62, 36, 3);
-      this.load.spritesheet('commet' , 'assets/comet-flame.png', 46, 78, 3);
+      this.load.spritesheet('commet' , 'assets/comet-flame.png', 156, 91, 3);
 
       this.loadSounds(['fire',
         'hit',

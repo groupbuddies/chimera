@@ -274,13 +274,13 @@
             var prob = this.random(1,20);
             // Meteor
             if(prob < 20){
-                junk = this.add.sprite(from.x, from.y, 'meteor');
-                this.coffeeFlame.animations.add('walk');
-                this.coffeeFlame.animations.play('walk', 10, true);
+                junk = this.add.sprite(from.x, from.y, 'commet');
+                junk.animations.add('walk');
+                junk.animations.play('walk', 10, true);
                 junk.r = junk.width * 0.18;
                 this.junks.add(junk);
                 junk.anchor.set(0.5, 0.5);
-                junk.scale.set(0.3, 0.3);
+                junk.scale.set(0.2, 0.2);
             }
             // Astronaut
             else {
@@ -296,11 +296,9 @@
             var angle = this.game.physics.arcade.moveToXY(junk,to.x, to.y, 60);
 
             // Meteor
-            if(prob < 20){
+            if(prob < 20) {
                 var angle = this.game.physics.arcade.moveToXY(junk,to.x, to.y, 60);
                 junk.rotation = angle+Math.PI-0.2;
-                junk.tween = this.add.tween(junk).to({rotation: angle+Math.PI+0.2}, 300, Phaser.Easing.Sinusoidal.InOut, true, 0, -1, true  );
-                junk.tween.start();
             }
             // Astronaut
             else {
