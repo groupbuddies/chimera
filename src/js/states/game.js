@@ -276,7 +276,7 @@
                 junk = this.add.sprite(from.x, from.y, 'commet');
                 junk.animations.add('walk');
                 junk.animations.play('walk', 10, true);
-                junk.r = junk.width * 0.18;
+                junk.r = junk.width * 0.08;
                 this.junks.add(junk);
                 junk.anchor.set(0.5, 0.5);
                 junk.scale.set(0.15, 0.15);
