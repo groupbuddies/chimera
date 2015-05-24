@@ -329,7 +329,7 @@
 
       if (this.junks) {
         this.junks.forEach(function(junk) {
-          if (this.circlesOverlap(this.coffee, junk)) {
+          if (!junk.notCollidable && this.circlesOverlap(this.coffee, junk)) {
             this.coffee.kill();
             junk.body.velocity.x = 0;
             junk.body.velocity.y = 0;
@@ -352,6 +352,7 @@
 
             junk.r = undefined;
             junk.loadTexture('pum');
+            junk.notCollidable = true;
             junk.children.forEach(function(c){ c.kill(); });
             junk.scale.set(0.2, 0.2);
             junk.tween = this.add.tween(junk).to({
