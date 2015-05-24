@@ -39,7 +39,7 @@
 
       var numPins = 3;
       this.sounds = {
-        soundtrack: this.game.add.audio('soundtrack', 0.1, true),
+        soundtrack: this.game.add.audio('soundtrack', 0.05, true),
         actions: {
             fire          : this.game.add.audio('fire'),
             hit           : this.game.add.audio('hit'),
