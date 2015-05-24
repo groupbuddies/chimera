@@ -18,16 +18,13 @@
     },
 
     loadResources: function () {
-      this.load.image('player', 'assets/player.png');
-      this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
-
       this.load.image('earth'      , 'assets/earth.svg');
       this.load.image('mocha'      , 'assets/mocha.svg');
       this.load.image('coffee'     , 'assets/coffee.png');
       this.load.image('cannon'     , 'assets/cannon.png');
       this.load.image('pinpoint'   , 'assets/location.png');
       this.load.image('pum'        , 'assets/pum.png');
-      this.load.image('meteor'     , 'assets/comet-flame.png');
+      this.load.image('meteor'     , 'assets/comet-flame.svg');
       this.load.image('astronaut'  , 'assets/astronaut.svg');
       this.load.image('bg'         , 'assets/background.png');
 
