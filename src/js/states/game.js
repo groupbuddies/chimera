@@ -100,8 +100,6 @@
     checkOutOfBoundsPins: function() {
       this.pinpoints.forEach(function(pin) {
         var pinWorldAngle = pin.angle + this.earth.angle;
-        console.log(pinWorldAngle);
-
         if (pinWorldAngle > -90 && pinWorldAngle < 0) {
           this.renewPin(this.pinpoints.getIndex(pin));
         }
