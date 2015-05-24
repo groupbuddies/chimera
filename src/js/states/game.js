@@ -113,6 +113,9 @@
       this.coffee.scale.set(0.2, 0.2);
       this.coffee.hit = false;
       this.game.physics.arcade.enable(this.coffee);
+      this.coffee.events.onOutOfBounds.add(function() {
+        this.playFx(this.sounds.actions.miss);
+      }, this);
 
       this.coffeeFlame = this.add.sprite(0, 0, 'flames');
       this.coffee.addChild(this.coffeeFlame);
