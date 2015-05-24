@@ -29,7 +29,7 @@
       this.load.image('smile'      , 'assets/success.png');
       this.load.image('ship'       , 'assets/ship.svg');
 
-      this.load.spritesheet('shipFlame'  , 'assets/ship-flame.png', 72, 216, 3);
+      this.load.spritesheet('shipFlame'  , 'assets/ship-flame.png', 216, 72, 3);
       this.load.spritesheet('flames' , 'assets/flames.png', 62, 36, 3);
       this.load.spritesheet('commet' , 'assets/comet-flame.png', 262, 127, 3);
 
