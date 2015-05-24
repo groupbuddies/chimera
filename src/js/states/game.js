@@ -438,8 +438,8 @@
         pin.x = this.earth.width * 0.497 * Math.cos(pin.angle * Math.PI / 180);
         pin.y = this.earth.width * 0.497 * Math.sin(pin.angle * Math.PI / 180);
 
-        pum.x = this.earth.width * 0.497 * Math.cos(pum.angle * Math.PI / 180);
-        pum.y = this.earth.width * 0.497 * Math.sin(pum.angle * Math.PI / 180);
+        pum.x = (this.earth.width+10) * 0.497 * Math.cos(pum.angle * Math.PI / 180);
+        pum.y = (this.earth.width+10) * 0.497 * Math.sin(pum.angle * Math.PI / 180);
 
         pin.enableBody = true;
         pin.checkWorldBounds = true;
