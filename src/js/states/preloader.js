@@ -23,7 +23,7 @@
       this.load.image('coffee'     , 'assets/coffee.png');
       this.load.image('cannon'     , 'assets/cannon.png');
       this.load.image('pinpoint'   , 'assets/location.png');
-      this.load.image('pum'        , 'assets/pum.png');
+      this.load.image('pum'        , 'assets/pum.svg');
       this.load.image('meteor'     , 'assets/comet-flame.svg');
       this.load.image('astronaut'  , 'assets/astronaut.svg');
       this.load.image('bg'         , 'assets/background.png');
