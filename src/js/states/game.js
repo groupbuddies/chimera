@@ -51,7 +51,7 @@
             junk_hit      : this.game.add.audio('junk_hit'),
             miss          : this.game.add.audio('miss'),
             new_pin       : this.game.add.audio('new_pin'),
-            astronaut_hit : this.game.add.audio('astronaut_hit'),
+            ship_hit      : this.game.add.audio('ship_hit'),
         }
       };
 
@@ -289,7 +289,7 @@
                 junk.anchor.set(0.5, 0.5);
                 junk.scale.set(0.15, 0.15);
             }
-            else if (prob > 25 && prob < 30) {
+            else {
               junk = this.add.sprite(from.x, from.y, 'ship');
               var flame = this.add.sprite(0, 0, 'shipFlame');
               flame.animations.add('walk');
@@ -302,23 +302,10 @@
               junk.anchor.set(0.5, 0.5);
               junk.scale.set(0.7, 0.7);
             }
-            // Astronaut
-            else {
-              junk = this.add.sprite(from.x, from.y, 'astronaut');
-              junk.r = junk.width * 0.3;
-              this.junks.add(junk);
-              junk.anchor.set(0.5, 0.5);
-              junk.scale.set(0.7, 0.7);
-            }
 
             junk.outOfBoundsKill = true;
             this.game.physics.enable(junk, Phaser.Physics.ARCADE);
             junk.rotation = this.game.physics.arcade.moveToXY(junk,to.x, to.y, 60) + Math.PI;
-
-            if (junk.key === 'astronaut') {
-              this.game.physics.arcade.moveToXY(junk,to.x, to.y, 10);
-              junk.body.angularVelocity = 50;
-            }
         }
     },
     random: function(min, max) {
@@ -351,8 +338,8 @@
             else
               junk.body.angularVelocity = 0
 
-            if (junk.key === "astronaut"){
-              this.playFx(this.sounds.actions.astronaut_hit);
+            if (junk.key === "ship"){
+              this.playFx(this.sounds.actions.ship_hit);
               this.score -= 1;
             } else {
               this.playFx(this.sounds.actions.junk_hit);

@@ -24,7 +24,6 @@
       this.load.image('cannon'     , 'assets/cannon.png');
       this.load.image('pinpoint'   , 'assets/location.png');
       this.load.image('pum'        , 'assets/explode.png');
-      this.load.image('astronaut'  , 'assets/astronaut.svg');
       this.load.image('bg'         , 'assets/background.png');
       this.load.image('smile'      , 'assets/success.png');
       this.load.image('ship'       , 'assets/ship.svg');
@@ -41,7 +40,7 @@
         'miss',
         'new_pin',
         'soundtrack',
-        'astronaut_hit'
+        'ship_hit'
       ]);
     },
 
