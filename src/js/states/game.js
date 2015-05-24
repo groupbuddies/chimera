@@ -347,7 +347,17 @@
             }
 
             junk.r = undefined;
-            junk.loadTexture('pum');
+            junk.kill();
+
+            var emitter = this.game.add.emitter(0, 0, 1000);
+            emitter.makeParticles(['red', 'orange', 'yellow']);
+
+            emitter.x = junk.x;
+            emitter.y = junk.y;
+
+            emitter.start(true, 2000, 1, 20, 20)
+
+
             junk.notCollidable = true;
             junk.children.forEach(function(c){ c.kill(); });
             junk.scale.set(0.2, 0.2);
@@ -359,6 +369,7 @@
             this.timer.add(1000, function() {
               this.junks.remove(junk);
               junk.destroy();
+              emitter.destroy();
             }, this);
             this.timer.start();
           }

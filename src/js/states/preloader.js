@@ -27,6 +27,9 @@
       this.load.image('bg'         , 'assets/background.png');
       this.load.image('smile'      , 'assets/success.png');
       this.load.image('ship'       , 'assets/ship.svg');
+      this.load.image('red'       , 'assets/red.png');
+      this.load.image('orange'       , 'assets/orange.png');
+      this.load.image('yellow'       , 'assets/yellow.png');
 
       this.load.spritesheet('shipFlame'  , 'assets/ship-flame.png', 216, 72, 3);
       this.load.spritesheet('flames' , 'assets/flames.png', 62, 36, 3);
