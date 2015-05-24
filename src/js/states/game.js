@@ -21,7 +21,6 @@
       this.earth = this.add.sprite(this.game.width * 1.72, this.game.height * 0.5, 'earth');
       this.earth.anchor.setTo(0.5, 0.5);
       this.earth.r = (this.earth.width * 0.5);
-      //this.earth.scale.set(0.3, 0.3);
 
       this.mocha = this.add.sprite(0, this.game.height * 0.5, 'mocha');
       this.mocha.anchor.setTo(0.5, 0.5);
@@ -280,7 +279,7 @@
                 junk.r = junk.width * 0.18;
                 this.junks.add(junk);
                 junk.anchor.set(0.5, 0.5);
-                junk.scale.set(0.2, 0.2);
+                junk.scale.set(0.15, 0.15);
             }
             else if (prob > 25 && prob < 30) {
               junk = this.add.sprite(from.x, from.y, 'ship');
@@ -354,6 +353,7 @@
             junk.r = undefined;
             junk.loadTexture('pum');
             junk.children.forEach(function(c){ c.kill(); });
+            junk.scale.set(0.2, 0.2);
             junk.tween = this.add.tween(junk).to({
               alpha: 0,
             }, 1000, Phaser.Easing.Quadratic.InOut);
@@ -423,7 +423,7 @@
         this.pums.add(pum);
 
         pin.x = this.earth.width * 0.495 * Math.cos(pin.angle * Math.PI / 180);
-        pin.y = this.earth.width * 0.495 * Math.sin(pin.angle * Math.PI / 180);
+        pin.y = this.earth.width * 0.485 * Math.sin(pin.angle * Math.PI / 180);
 
         pum.x = this.earth.width * 0.495 * Math.cos(pum.angle * Math.PI / 180);
         pum.y = this.earth.width * 0.495 * Math.sin(pum.angle * Math.PI / 180);
