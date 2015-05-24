@@ -86,7 +86,7 @@
     },
 
     genPinPointAngle : function(){
-        return Math.floor(Math.random()*(180-150)+150);
+        return Math.floor(Math.random()*(20-15)*10+150);
     },
     update: function () {
       if (!!this.coffee && this.coffee.exists) {
