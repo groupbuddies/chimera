@@ -301,7 +301,7 @@
             if (junk.key === "astronaut")
               this.playFx(this.sounds.actions.astronaut_hit);
             else
-              this.playFx(this.sounds.actions.hit);
+              this.playFx(this.sounds.actions.junk_hit);
           }
 
         }, this);
