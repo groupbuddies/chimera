@@ -286,6 +286,8 @@
               junk = this.add.sprite(from.x, from.y, 'ship');
               var flame = this.add.sprite(0, 0, 'shipFlame');
               junk.addChild(flame);
+              flame.scale.set(0.8,0.8);
+              flame.anchor.set(-0.4, 0.5);
               junk.r = junk.width * 0.3;
               this.junks.add(junk);
               junk.anchor.set(0.5, 0.5);
