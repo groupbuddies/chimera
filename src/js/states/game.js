@@ -38,7 +38,20 @@
       this.pums      = this.game.add.group();
 
       var numPins = 3;
+      this.sounds = {
+        soundtrack: this.game.add.audio('soundtrack', 0.1, true),
+        actions: {
+            fire          : this.game.add.audio('fire'),
+            hit           : this.game.add.audio('hit'),
+            earth_hit     : this.game.add.audio('earth_hit'),
+            junk_hit      : this.game.add.audio('junk_hit'),
+            miss          : this.game.add.audio('miss'),
+            new_pin       : this.game.add.audio('new_pin'),
+            astronaut_hit : this.game.add.audio('astronaut_hit'),
+        }
+      };
 
+      var numPins = 20;
       for(var i=0; i<numPins; i++){ this.newPin(); }
 
       this.earth.addChild(this.pinpoints);
@@ -57,17 +70,6 @@
       this.line = this.add.sprite(0, 0, this.lineProperties);
       this.trajectoryLine();
 
-      this.sounds = {
-        soundtrack: this.game.add.audio('soundtrack', 0.1, true),
-        actions: {
-            fire       : this.game.add.audio('fire'),
-            hit        : this.game.add.audio('hit'),
-            earth_hit  : this.game.add.audio('earth_hit'),
-            junk_hit   : this.game.add.audio('junk_hit'),
-            miss       : this.game.add.audio('miss'),
-            astronaut_hit       : this.game.add.audio('astronaut_hit'),
-        }
-      };
       this.sounds.soundtrack.play();
 
       this.game.world.bringToTop(this.mocha);
@@ -373,6 +375,9 @@
 
         pum.x = this.earth.width * 0.495 * Math.cos(pum.angle * Math.PI / 180);
         pum.y = this.earth.width * 0.495 * Math.sin(pum.angle * Math.PI / 180);
+
+        console.log(this);
+        this.playFx(this.sounds.actions.new_pin);
 
     },
     renewPin: function(index){

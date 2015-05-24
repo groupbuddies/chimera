@@ -35,6 +35,7 @@
         'earth_hit',
         'junk_hit',
         'miss',
+        'new_pin',
         'soundtrack',
         'astronaut_hit'
       ]);
