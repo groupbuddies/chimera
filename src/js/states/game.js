@@ -6,7 +6,7 @@
 
   Game.prototype = {
     create: function () {
-      this.randSeed = 1;
+      this.randSeed = new Date();
       this.score = 0;
       this.style = { font: '16px Arial', fill: '#FFFFFF', align: 'center' };
 
@@ -86,7 +86,14 @@
     },
 
     genPinPointAngle : function(){
-        return Math.floor(Math.random()*(17-14)*10+140);
+        var angle = null;
+        this.pinAngles = this.pinAngles || {};
+        while(angle === null){
+            angle = Math.floor(Math.random()*(17-14)*10+140);
+            if(this.pinAngles[angle]){ angle = null; }
+            else { this.pinAngles[angle] = true;     }
+        }
+        return angle;
     },
     update: function () {
       if (!!this.coffee && this.coffee.exists) {
@@ -107,7 +114,6 @@
     checkOutOfBoundsPins: function() {
       this.pinpoints.forEach(function(pin) {
         var pinWorldAngle = pin.angle + this.earth.angle;
-        console.log(pin.angle);
         if (pinWorldAngle > 195 && pinWorldAngle < 100) {
           this.renewPin(this.pinpoints.getIndex(pin));
         }
@@ -390,7 +396,7 @@
     newPin: function(){
         var pin   = this.pinpoints.create(0, 0, 'pinpoint');
         var pum   = this.pums.create(0, 0, 'smile');
-        pin.angle = Math.floor((this.genPinPointAngle()-this.earth.angle)/10)*10;
+        pin.angle = Math.floor((this.genPinPointAngle()-this.earth.angle)/5)*5;
         pin.r          = 2;
         pum.angle      = pin.angle;
         pin.scale      = {x: 0.8, y: 0.8};
@@ -412,6 +418,9 @@
         pin.checkWorldBounds = true;
         pin.outOfBoundsKill = true;
         pin.events.onOutOfBounds.add(function(){
+            if(pin.out){ return; }
+            pin.out = true;
+            delete this.pinAngles[pin.angle];
             this.score -= 1;
             this.newPin();
         }, this);
