@@ -337,16 +337,6 @@
             else
               junk.body.angularVelocity = 0
 
-            this.timer = this.game.time.create(this.game);
-            this.timer.add(1000, function() {
-              junk.parent.remove(junk);
-              junk.destroy();
-            }, this);
-            this.timer.start();
-            junk.tween = this.add.tween(junk).to({
-              alpha: 0,
-            }, 1000, Phaser.Easing.Quadratic.InOut);
-            junk.tween.start();
 
             if (junk.key === "astronaut"){
               this.playFx(this.sounds.actions.astronaut_hit);
@@ -356,7 +346,19 @@
               this.score -= 1;
             }
 
+
+            junk.r = undefined;
             junk.loadTexture('pum');
+            junk.tween = this.add.tween(junk).to({
+              alpha: 0,
+            }, 1000, Phaser.Easing.Quadratic.InOut);
+            junk.tween.start();
+            this.timer = this.game.time.create(this.game);
+            this.timer.add(1000, function() {
+              this.junks.remove(junk);
+              junk.destroy();
+            }, this);
+            this.timer.start();
           }
 
         }, this);
