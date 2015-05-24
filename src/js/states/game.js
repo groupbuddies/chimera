@@ -271,9 +271,9 @@
             }
 
             var junk;
-            var prob = this.random(1,20);
+            var prob = this.random(1,30);
             // Meteor
-            if(prob < 17){
+            if(prob < 25){
                 junk = this.add.sprite(from.x, from.y, 'commet');
                 junk.animations.add('walk');
                 junk.animations.play('walk', 10, true);
@@ -282,7 +282,7 @@
                 junk.anchor.set(0.5, 0.5);
                 junk.scale.set(0.2, 0.2);
             }
-            else if (prob > 17 && prob < 20) {
+            else if (prob > 25 && prob < 30) {
               junk = this.add.sprite(from.x, from.y, 'ship');
               var flame = this.add.sprite(0, 0, 'shipFlame');
               junk.addChild(flame);
