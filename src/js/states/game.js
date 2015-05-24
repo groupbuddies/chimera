@@ -86,7 +86,7 @@
     },
 
     genPinPointAngle : function(){
-        return Math.floor(Math.random()*(20-15)*10+150);
+        return Math.floor(Math.random()*(17-14)*10+140);
     },
     update: function () {
       if (!!this.coffee && this.coffee.exists) {
@@ -390,7 +390,7 @@
     newPin: function(){
         var pin   = this.pinpoints.create(0, 0, 'pinpoint');
         var pum   = this.pums.create(0, 0, 'smile');
-        pin.angle = this.genPinPointAngle()-this.earth.angle;
+        pin.angle = Math.floor((this.genPinPointAngle()-this.earth.angle)/10)*10;
         pin.r          = 2;
         pum.angle      = pin.angle;
         pin.scale      = {x: 0.8, y: 0.8};
