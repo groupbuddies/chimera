@@ -6,7 +6,7 @@
 
   Game.prototype = {
     create: function () {
-      this.randSeed = Date.now();
+      this.randSeed = 1;
       this.score = 0;
       this.style = { font: '16px Arial', fill: '#FFFFFF', align: 'center' };
 
@@ -89,7 +89,7 @@
         var angle = null;
         this.pinAngles = this.pinAngles || {};
         while(angle === null){
-            angle = Math.floor(Math.random()*(17-14)*10+140);
+            angle = Math.floor((Math.floor(Math.random()*(17-14)*10+140)-this.earth.angle)/5)*5;
             if(this.pinAngles[angle]){ angle = null; }
             else { this.pinAngles[angle] = true;     }
         }
@@ -401,7 +401,8 @@
     newPin: function(){
         var pin   = this.pinpoints.create(0, 0, 'pinpoint');
         var pum   = this.pums.create(0, 0, 'smile');
-        pin.angle = Math.floor((this.genPinPointAngle()-this.earth.angle)/5)*5;
+        pin.startAngle = this.genPinPointAngle();
+        pin.angle = pin.startAngle;
         pin.r          = 2;
         pum.angle      = pin.angle;
         pin.scale      = {x: 0.8, y: 0.8};
@@ -425,7 +426,7 @@
         pin.events.onOutOfBounds.add(function(){
             if(pin.out){ return; }
             pin.out = true;
-            delete this.pinAngles[pin.angle];
+            delete this.pinAngles[pin.startAngle];
             this.score -= 1;
             this.newPin();
         }, this);
@@ -435,6 +436,7 @@
         var pinpoint = this.pinpoints.getChildAt(index);
         var pum      = this.pums.getChildAt(index);
         pinpoint.kill();
+        delete this.pinAngles[pinpoint.startAngle];
         this.pinpoints.remove(pinpoint);
         pum.kill();
         this.pums.remove(pum);
