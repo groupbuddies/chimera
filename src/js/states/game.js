@@ -21,7 +21,7 @@
       this.earth = this.add.sprite(this.game.width * 1.72, this.game.height * 0.5, 'earth');
       this.earth.anchor.setTo(0.5, 0.5);
       this.earth.r = (this.earth.width * 0.5);
-      // this.earth.scale.set(0.8, 0.6);
+      // this.earth.scale.set(0.3, 0.3);
 
       this.mocha = this.add.sprite(0, this.game.height * 0.5, 'mocha');
       this.mocha.anchor.setTo(0.5, 0.5);
@@ -37,7 +37,7 @@
       this.pinpoints = this.game.add.group();
       this.pums      = this.game.add.group();
 
-      var numPins = 20;
+      var numPins = 3;
 
       for(var i=0; i<numPins; i++){ this.newPin(); }
 
@@ -79,7 +79,7 @@
     },
 
     genPinPointAngle : function(){
-        return Math.floor(Math.random()*(360-1)+1);
+        return Math.floor(Math.random()*(90-1)+1);
     },
     update: function () {
       if (!!this.coffee && this.coffee.exists) {
@@ -89,11 +89,23 @@
       }
 
       this.earth.angle = (this.game.time.now) * 0.00008 * (180 / Math.PI);
+      this.checkOutOfBoundsPins();
       this.trajectoryLine();
       this.movePlayer();
       this.checkCoffeeCollision();
       this.updateCoffeeSpeed();
       this.drawScore();
+    },
+
+    checkOutOfBoundsPins: function() {
+      this.pinpoints.forEach(function(pin) {
+        var pinWorldAngle = pin.angle + this.earth.angle;
+        console.log(pinWorldAngle);
+
+        if (pinWorldAngle > -90 && pinWorldAngle < 0) {
+          this.renewPin(this.pinpoints.getIndex(pin));
+        }
+      }, this);
     },
 
     drawScore: function() {
@@ -369,7 +381,9 @@
         var pinpoint = this.pinpoints.getChildAt(index);
         var pum      = this.pums.getChildAt(index);
         pinpoint.kill();
+        this.pinpoints.remove(pinpoint);
         pum.kill();
+        this.pums.remove(pum);
         this.game.time.events.add(Phaser.Timer.SECOND*2,  this.newPin, this);
     },
 
