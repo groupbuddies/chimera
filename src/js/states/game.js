@@ -209,7 +209,7 @@
     },
 
     steerCannon: function() {
-      var angle = Math.atan2(this.target.y - this.cannon.y, this.target.x - this.cannon.x );
+      var angle = Math.atan2(this.target.y - this.cannon.y, this.target.x - this.cannon.x);
       angle = angle * (180/Math.PI);
 
       if (angle < 0) {
@@ -219,7 +219,7 @@
       this.cannon.angle = 90 + angle;
     },
     steerCoffee: function() {
-      var angularVelocity = 3;
+      var angularVelocity = 1.5;
 
       if (this.cursors.down.isDown) {
         this.coffee.angle += angularVelocity;
@@ -229,6 +229,12 @@
       if (this.cursors.up.isDown) {
         this.coffee.angle -= angularVelocity;
         this.coffee.lastSteeredAt = Date.now();
+      }
+
+      if (this.coffee.angle < -50) {
+        this.coffee.angle = -50;
+      } else if (this.coffee.angle > 50) {
+        this.coffee.angle = 50;
       }
 
       this.updateCoffeeSpeed();
