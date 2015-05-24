@@ -1,22 +1,120 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="46px" height="75px" viewBox="0 0 46 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.1 (12002) - http://www.bohemiancoding.com/sketch -->
-    <title>Oval 171 Copy 5 + Oval 171 Copy 4</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <linearGradient x1="0%" y1="50%" x2="94.0340909%" y2="50%" id="linearGradient-1">
-            <stop stop-color="#FFD98A" offset="0%"></stop>
-            <stop stop-color="#F9C55A" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="0%" y1="50%" x2="94.0340909%" y2="50%" id="linearGradient-2">
-            <stop stop-color="#F27131" offset="0%"></stop>
-            <stop stop-color="#F9C55A" offset="100%"></stop>
-        </linearGradient>
-    </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="Oval-171-Copy-5-+-Oval-171-Copy-4" sketch:type="MSLayerGroup" transform="translate(0.000000, -1.000000)">
-            <path d="M-14.3119235,38 C-14.3119235,-8.72478758 60.6880765,32.0379957 60.6880765,39 C60.6880765,44.9620053 -14.3119235,85.7247872 -14.3119235,38 Z" id="Oval-171-Copy-5" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup" transform="translate(23.188076, 38.500000) rotate(-270.000000) translate(-23.188076, -38.500000) "></path>
-            <path d="M-10.3119235,35 C-10.3119235,-6.97758896 55.6880765,29.2559962 55.6880765,35 C55.6880765,40.7440047 -10.3119235,76.9775886 -10.3119235,35 Z" id="Oval-171-Copy-4" fill="url(#linearGradient-2)" sketch:type="MSShapeGroup" transform="translate(22.688076, 35.000000) rotate(-270.000000) translate(-22.688076, -35.000000) "></path>
-        </g>
+<svg
+   xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="75"
+   height="45.002476"
+   viewBox="0 0 75 45.002476"
+   version="1.1"
+   id="svg2"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="flame.svg">
+  <metadata
+     id="metadata26">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview24"
+     showgrid="false"
+     inkscape:zoom="3.1466667"
+     inkscape:cx="37.201633"
+     inkscape:cy="22.501237"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <!-- Generator: Sketch 3.3.1 (12002) - http://www.bohemiancoding.com/sketch -->
+  <title
+     id="title4">Oval 171 Copy 5 + Oval 171 Copy 4</title>
+  <desc
+     id="desc6">Created with Sketch.</desc>
+  <defs
+     id="defs8">
+    <linearGradient
+       x1="-11.086273"
+       y1="49.559536"
+       x2="43.544098"
+       y2="49.559536"
+       id="linearGradient-1"
+       gradientTransform="scale(1.290959,0.77461797)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#FFD98A"
+         offset="0%"
+         id="stop11" />
+      <stop
+         stop-color="#F9C55A"
+         offset="100%"
+         id="stop13" />
+    </linearGradient>
+    <linearGradient
+       x1="-8.0278215"
+       y1="44.958313"
+       x2="40.287769"
+       y2="44.958313"
+       id="linearGradient-2"
+       gradientTransform="scale(1.2845233,0.77849894)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#F27131"
+         offset="0%"
+         id="stop16" />
+      <stop
+         stop-color="#F9C55A"
+         offset="100%"
+         id="stop18" />
+    </linearGradient>
+  </defs>
+  <g
+     id="Page-1"
+     sketch:type="MSPage"
+     transform="matrix(0,-1,1,0,0,45.799605)"
+     style="fill:none;stroke:none">
+    <g
+       id="Oval-171-Copy-5-+-Oval-171-Copy-4"
+       sketch:type="MSLayerGroup"
+       transform="translate(0,-1)">
+      <path
+         d="m -14.311924,38 c 0,-46.7247876 75,-5.962004 75,1 0,5.962005 -75,46.724787 -75,-1 z"
+         id="Oval-171-Copy-5"
+         sketch:type="MSShapeGroup"
+         transform="matrix(0,1,-1,0,61.688076,15.311924)"
+         style="fill:url(#linearGradient-1)"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m -10.311924,35 c 0,-41.977589 66,-5.744004 66,0 0,5.744005 -66,41.977589 -66,0 z"
+         id="Oval-171-Copy-4"
+         sketch:type="MSShapeGroup"
+         transform="matrix(0,1,-1,0,57.688076,12.311924)"
+         style="fill:url(#linearGradient-2)"
+         inkscape:connector-curvature="0" />
     </g>
+  </g>
 </svg>
