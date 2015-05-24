@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="46px" height="75px" viewBox="0 0 46 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.1 (12002) - http://www.bohemiancoding.com/sketch -->
+    <title>Oval 171 Copy 5 + Oval 171 Copy 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="50%" x2="94.0340909%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#FFD98A" offset="0%"></stop>
+            <stop stop-color="#F9C55A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50%" x2="94.0340909%" y2="50%" id="linearGradient-2">
+            <stop stop-color="#F27131" offset="0%"></stop>
+            <stop stop-color="#F9C55A" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Oval-171-Copy-5-+-Oval-171-Copy-4" sketch:type="MSLayerGroup" transform="translate(0.000000, -1.000000)">
+            <path d="M-14.3119235,38 C-14.3119235,-8.72478758 60.6880765,32.0379957 60.6880765,39 C60.6880765,44.9620053 -14.3119235,85.7247872 -14.3119235,38 Z" id="Oval-171-Copy-5" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup" transform="translate(23.188076, 38.500000) rotate(-270.000000) translate(-23.188076, -38.500000) "></path>
+            <path d="M-10.3119235,35 C-10.3119235,-6.97758896 55.6880765,29.2559962 55.6880765,35 C55.6880765,40.7440047 -10.3119235,76.9775886 -10.3119235,35 Z" id="Oval-171-Copy-4" fill="url(#linearGradient-2)" sketch:type="MSShapeGroup" transform="translate(22.688076, 35.000000) rotate(-270.000000) translate(-22.688076, -35.000000) "></path>
+        </g>
+    </g>
+</svg>

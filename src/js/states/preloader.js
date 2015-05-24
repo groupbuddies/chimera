@@ -28,6 +28,8 @@
       this.load.image('astronaut'  , 'assets/astronaut.svg');
       this.load.image('bg'         , 'assets/background.png');
       this.load.image('smile'      , 'assets/success.png');
+      this.load.image('ship'       , 'assets/ship.svg');
+      this.load.image('shipFlame'  , 'assets/flame.svg');
 
       this.load.spritesheet('flames' , 'assets/flames.png', 62, 36, 3);
 

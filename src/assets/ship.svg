@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="56px" height="58px" viewBox="0 0 56 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.1 (12002) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Group" sketch:type="MSLayerGroup" transform="translate(1.000000, 0.000000)">
+            <path d="M13.5000002,36.4945832 C18.5274215,30.6916346 20.5000002,25.0000001 20.5000002,25.0000001 L20.5000002,51.0000001 C20.5000002,51.0000001 0.583191127,54.0000001 0.583191126,47.9891657 C0.583191126,41.9783313 8.47257896,42.2975318 13.5000002,36.4945832 Z" id="Rectangle-360-Copy-4" stroke="#212121" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+            <path d="M13.5000002,36.4945832 C18.5274215,30.6916346 20.5000002,25.0000001 20.5000002,25.0000001 C20.5000002,25.0000001 30.0000004,51.0000001 20.5000002,51.0000001 C11,51.0000001 8.47257896,42.2975318 13.5000002,36.4945832 Z" id="Rectangle-360-Copy-7" fill="#CADBDE" sketch:type="MSShapeGroup"></path>
+            <path d="M46.5000002,36.4945832 C51.5274215,30.6916346 53.5000002,25.0000001 53.5000002,25.0000001 L53.5000002,51.0000001 C53.5000002,51.0000001 33.5831911,54.0000001 33.5831911,47.9891657 C33.5831911,41.9783313 41.472579,42.2975318 46.5000002,36.4945832 Z" id="Rectangle-360-Copy-5" stroke="#212121" fill="#FFFFFF" sketch:type="MSShapeGroup" transform="translate(43.541596, 38.374324) scale(-1, 1) translate(-43.541596, -38.374324) "></path>
+            <path d="M32.5000002,37.4945832 C37.5274215,31.6916346 39.5000002,26.0000001 39.5000002,26.0000001 C39.5000002,26.0000001 49.0000004,52.0000001 39.5000002,52.0000001 C30,52.0000001 27.472579,43.2975318 32.5000002,37.4945832 Z" id="Rectangle-360-Copy-8" fill="#CADBDE" sketch:type="MSShapeGroup" transform="translate(36.845601, 39.000000) scale(-1, 1) translate(-36.845601, -39.000000) "></path>
+            <path d="M27.1880765,0.989165676 C36.6880765,0.989165676 36.6880765,56.9891657 36.6880765,56.9891657 L17.6880765,56.9891657 C17.6880765,56.9891657 17.6880765,0.989165676 27.1880765,0.989165676 Z" id="Rectangle-360-Copy-3" stroke="#212121" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+            <path d="M27.1880765,0.989165676 C36.6880765,0.989165676 37.0000005,55.9999994 37,55.9999994 C25,58.9999994 27.1880765,0.989165676 27.1880765,0.989165676 Z" id="Rectangle-360-Copy-9" fill="#E5F3F5" sketch:type="MSShapeGroup"></path>
+            <path d="M27.1880765,51.9999994 C37.6880765,51.9999994 37.6880765,56.9891657 37.6880765,56.9891657 L16.6880765,56.9891657 C16.6880765,56.9891657 16.6880765,51.9999994 27.1880765,51.9999994 Z" id="Rectangle-360-Copy-6" fill="#3F3F3F" sketch:type="MSShapeGroup"></path>
+            <path d="M23,14 L27.5,11 L32,14 L32,16 L27.5,13 L23,16 L23,14 Z" id="Rectangle-369" fill="#474747" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>
