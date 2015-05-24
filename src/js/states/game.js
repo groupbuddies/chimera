@@ -273,7 +273,7 @@
             var junk;
             var prob = this.random(1,20);
             // Meteor
-            if(prob < 20){
+            if(prob < 17){
                 junk = this.add.sprite(from.x, from.y, 'commet');
                 junk.animations.add('walk');
                 junk.animations.play('walk', 10, true);
@@ -282,28 +282,29 @@
                 junk.anchor.set(0.5, 0.5);
                 junk.scale.set(0.2, 0.2);
             }
+            else if (prob > 17 && prob < 20) {
+              junk = this.add.sprite(from.x, from.y, 'ship');
+              junk.r = junk.width * 0.3;
+              this.junks.add(junk);
+              junk.anchor.set(0.5, 0.5);
+              junk.scale.set(0.7, 0.7);
+            }
             // Astronaut
             else {
-                junk = this.add.sprite(from.x, from.y, 'astronaut');
-                junk.r = junk.width * 0.3;
-                this.junks.add(junk);
-                junk.anchor.set(0.5, 0.5);
-                junk.scale.set(0.7, 0.7);
+              junk = this.add.sprite(from.x, from.y, 'astronaut');
+              junk.r = junk.width * 0.3;
+              this.junks.add(junk);
+              junk.anchor.set(0.5, 0.5);
+              junk.scale.set(0.7, 0.7);
             }
 
             junk.outOfBoundsKill = true;
             this.game.physics.enable(junk, Phaser.Physics.ARCADE);
-            var angle = this.game.physics.arcade.moveToXY(junk,to.x, to.y, 60);
+            junk.rotation = this.game.physics.arcade.moveToXY(junk,to.x, to.y, 60) + Math.PI;
 
-            // Meteor
-            if(prob < 20) {
-                var angle = this.game.physics.arcade.moveToXY(junk,to.x, to.y, 60);
-                junk.rotation = angle+Math.PI-0.2;
-            }
-            // Astronaut
-            else {
-                this.game.physics.arcade.moveToXY(junk,to.x, to.y, 10);
-                junk.body.angularVelocity = 50;
+            if (junk.key === 'astronaut') {
+              this.game.physics.arcade.moveToXY(junk,to.x, to.y, 10);
+              junk.body.angularVelocity = 50;
             }
         }
     },
