@@ -64,7 +64,8 @@
             hit        : this.game.add.audio('hit'),
             earth_hit  : this.game.add.audio('earth_hit'),
             junk_hit   : this.game.add.audio('junk_hit'),
-            miss       : this.game.add.audio('miss')
+            miss       : this.game.add.audio('miss'),
+            astronaut_hit       : this.game.add.audio('astronaut_hit'),
         }
       };
       this.sounds.soundtrack.play();
@@ -73,7 +74,6 @@
       this.game.world.bringToTop(this.earth);
 
       this.textSprite = this.game.add.text(10, 10, 'SCORE: 0', this.style);
-
 
       this.game.time.events.loop(Phaser.Timer.SECOND,  this.maybeGenJunk, this);
     },
@@ -295,7 +295,10 @@
           if (this.circlesOverlap(this.coffee, junk)) {
             this.coffee.kill();
             junk.kill();
-            this.playFx(this.sounds.actions.hit);
+            if (junk.key === "astronaut")
+              this.playFx(this.sounds.actions.astronaut_hit);
+            else
+              this.playFx(this.sounds.actions.hit);
           }
 
         }, this);

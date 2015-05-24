@@ -38,7 +38,8 @@
         'earth_hit',
         'junk_hit',
         'miss',
-        'soundtrack'
+        'soundtrack',
+        'astronaut_hit'
       ]);
     },
 
