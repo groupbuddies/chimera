@@ -56,7 +56,9 @@
       };
 
       var numPins = 3;
-      for(var i=0; i<numPins; i++){ this.newPin(); }
+      for(var i=0; i<numPins; i++){
+        this.game.time.events.add(Phaser.Timer.SECOND*5*i, this.newPin, this);
+      }
 
       this.earth.addChild(this.pinpoints);
       this.earth.addChild(this.pums);
@@ -89,7 +91,7 @@
         var angle = null;
         this.pinAngles = this.pinAngles || {};
         while(angle === null){
-            angle = Math.floor((Math.floor(Math.random()*(17-14)*10+140)-this.earth.angle)/5)*5;
+            angle = Math.floor((Math.floor(Math.random()*(17-14)*10+140)-this.earth.angle)/10)*10;
             if(this.pinAngles[angle]){ angle = null; }
             else { this.pinAngles[angle] = true;     }
         }
