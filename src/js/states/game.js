@@ -225,27 +225,17 @@
         if(this.random(1,100) < prob){
             this.junks = this.junks || this.game.add.group();
             var from = {}; var to   = {};
-            var rand = this.random(0,3);
-            if(rand<1){
-                from.x = -50;
-                from.y = this.random(-2*this.game.height, this.game.height);
-                to.x   = this.game.width+50;
-                to.y   = this.random(-2*this.game.height, this.game.height);
-            } else if(rand<2){
-                from.x = this.game.width+50;
-                from.y = this.random(-2*this.game.height, this.game.height);
-                to.x   = -50;
-                to.y   = this.random(-2*this.game.height, this.game.height);
-            } else if(rand<3){
-                from.x = this.random(-2*this.game.width, this.game.width);
-                from.y = -50;
-                to.x   = this.random(-2*this.game.width, this.game.width);
-                to.y   = this.game.height+50;
-            } else {
-                from.x = this.random(-2*this.game.width, this.game.width);
-                from.y = this.game.height+50;
-                to.x   = this.random(-2*this.game.width, this.game.width);
-                to.y   = -50;
+            var rand = this.random(0,1);
+
+            from.x = this.random(this.game.width * 0.2, this.game.width * 0.8);
+            to.x   = this.random(this.game.width * 0.2, this.game.width * 0.8);
+
+            if(rand==0){
+              from.y = -50;
+              to.y   = this.game.height+50;
+            } else if(rand==1){
+              from.y = this.game.height+50;
+              to.y   = -50;
             }
 
             var junk;
