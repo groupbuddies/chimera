@@ -138,6 +138,7 @@
       this.coffee.hit = false;
       this.game.physics.arcade.enable(this.coffee);
       this.coffee.events.onOutOfBounds.add(function() {
+        this.line.visible = true;
         this.playFx(this.sounds.actions.miss);
       }, this);
 
@@ -338,6 +339,7 @@
         this.junks.forEach(function(junk) {
           if (!junk.notCollidable && this.circlesOverlap(this.coffee, junk)) {
             this.coffee.kill();
+            this.line.visible = true;
             junk.body.velocity.x = 0;
             junk.body.velocity.y = 0;
             junk.scale.set(1, 1);
