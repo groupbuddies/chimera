@@ -285,8 +285,8 @@
             if(prob < 20){
                 var angle = this.game.physics.arcade.moveToXY(junk,to.x, to.y, 60);
                 junk.rotation = angle+Math.PI-0.2;
-                var tween = this.add.tween(junk).to({rotation: angle+Math.PI+0.2}, 300, Phaser.Easing.Sinusoidal.InOut, true, 0, -1, true  );
-                tween.start();
+                junk.tween = this.add.tween(junk).to({rotation: angle+Math.PI+0.2}, 300, Phaser.Easing.Sinusoidal.InOut, true, 0, -1, true  );
+                junk.tween.start();
             }
             // Astronaut
             else {
@@ -315,10 +315,23 @@
         this.junks.forEach(function(junk) {
           if (this.circlesOverlap(this.coffee, junk)) {
             this.coffee.kill();
-            // junk.parent.remove(junk);
+            junk.body.velocity.x = 0;
+            junk.body.velocity.y = 0;
+            junk.scale.set(1, 1);
+            junk.rotation = 0.25;
+            if (junk.tween)
+              junk.tween.stop();
+            else
+              junk.body.angularVelocity = 0
+
+            this.timer = this.game.time.create(this.game);
+            this.timer.add(500, function() {
+              junk.parent.remove(junk);
+            }, this);
+            this.timer.start();
+
             junk.loadTexture('pum');
             if (junk.key === "astronaut")
-
               this.playFx(this.sounds.actions.astronaut_hit);
             else
               this.playFx(this.sounds.actions.junk_hit);
