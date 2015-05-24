@@ -264,9 +264,9 @@
 
             if(rand==0){
               from.y = -50;
-              to.y   = this.game.height+50;
+              to.y   = this.game.height+0;
             } else if(rand==1){
-              from.y = this.game.height+50;
+              from.y = this.game.height+0;
               to.y   = -50;
             }
 
@@ -337,10 +337,15 @@
               junk.body.angularVelocity = 0
 
             this.timer = this.game.time.create(this.game);
-            this.timer.add(500, function() {
+            this.timer.add(1000, function() {
               junk.parent.remove(junk);
+              junk.destroy();
             }, this);
             this.timer.start();
+            junk.tween = this.add.tween(junk).to({
+              alpha: 0,
+            }, 1000, Phaser.Easing.Quadratic.InOut);
+            junk.tween.start();
 
             if (junk.key === "astronaut"){
               this.playFx(this.sounds.actions.astronaut_hit);
