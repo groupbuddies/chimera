@@ -288,7 +288,7 @@
               flame.animations.play('walk', 10, true);
               junk.addChild(flame);
               flame.scale.set(0.8,0.8);
-              flame.anchor.set(-0.4, 0.5);
+              flame.anchor.set(-0.5, 0.5);
               junk.r = junk.width * 0.3;
               this.junks.add(junk);
               junk.anchor.set(0.5, 0.5);
@@ -397,6 +397,7 @@
         // Pin hit
         else {
           this.pums.getChildAt(minDistIndex).visible = true;
+          this.pinpoints.getChildAt(minDistIndex).visible = false;
           this.coffee.hit = true;
           this.playFx(this.sounds.actions.hit);
           this.score += 5;
@@ -412,10 +413,10 @@
         var pum   = this.pums.create(0, 0, 'smile');
         pin.startAngle = this.genPinPointAngle();
         pin.angle = pin.startAngle;
-        pin.r          = 2;
+        pin.r          = 15;
         pum.angle      = pin.angle;
         pin.scale      = {x: 0.8, y: 0.8};
-        pin.anchor     = {x:   0, y: 0.5};
+        pin.anchor     = {x:   0.2, y: 0.5};
         pum.anchor     = {x:   0, y: 0.5};
         pum.visible    = false;
 
@@ -423,11 +424,11 @@
         this.pinpoints.add(pin);
         this.pums.add(pum);
 
-        pin.x = this.earth.width * 0.495 * Math.cos(pin.angle * Math.PI / 180);
-        pin.y = this.earth.width * 0.485 * Math.sin(pin.angle * Math.PI / 180);
+        pin.x = this.earth.width * 0.497 * Math.cos(pin.angle * Math.PI / 180);
+        pin.y = this.earth.width * 0.497 * Math.sin(pin.angle * Math.PI / 180);
 
-        pum.x = this.earth.width * 0.495 * Math.cos(pum.angle * Math.PI / 180);
-        pum.y = this.earth.width * 0.495 * Math.sin(pum.angle * Math.PI / 180);
+        pum.x = this.earth.width * 0.497 * Math.cos(pum.angle * Math.PI / 180);
+        pum.y = this.earth.width * 0.497 * Math.sin(pum.angle * Math.PI / 180);
 
         pin.enableBody = true;
         pin.checkWorldBounds = true;
